@@ -1,0 +1,33 @@
+{
+    "name": "doodle-bug-quest",
+    "version": "1.0.0",
+    "description": "application to entice children to do their chores",
+    "main": "server.js",
+    "scripts": {
+        "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
+        "start:prod": "node server.js",
+        "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
+        "client": "cd client && npm run start",
+        "install": "cd client && npm install",
+        "build": "cd client && npm run build",
+        "heroku-postbuild": "npm run build"
+    },
+    "author": "Nick Nolan",
+    "license": "ISC",
+    "devDependencies": {
+        "concurrently": "^3.5.0",
+        "nodemon": "^1.11.0"
+    },
+    "dependencies": {
+        "axios": "^0.16.2",
+        "crypto-random-string": "^1.0.0",
+        "express": "^4.16.4",
+        "if-env": "^1.0.4",
+        "jsonwebtoken": "^8.5.0",
+        "mongoose": "^5.4.16",
+        "mongoose-unique-validator": "^2.0.2",
+        "pbkdf2": "^3.0.17",
+        "react-router-dom": "^4.3.1",
+        "reactstrap": "^7.1.0"
+    }
+}
