@@ -10,14 +10,14 @@ const FamilyMemberSchema = new Schema ({
         type: Number,
         required: "password is required"
     },
-    quests: {
+    quests: [{
         type: Schema.Types.ObjectId,
         ref: "Quest"
-    },
-    rewards: {
+    }],
+    rewards: [{
         type: Schema.Types.ObjectId,
         ref: "Reward"
-    }
+    }]
 });
 
 const FamilyMember = mongoose.model("FamilyMembers", FamilyMemberSchema);
