@@ -8,6 +8,10 @@ const AccountSchema = new Schema ({
         type: String,
         required: "username is required"
     },
+    familyname:{
+        type: String,
+        required: "familyname is required"
+    },
     password: {
         type: String,
         required: "password is required"
