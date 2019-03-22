@@ -17,7 +17,11 @@ const FamilyMemberSchema = new Schema ({
     rewards: [{
         type: Schema.Types.ObjectId,
         ref: "Reward"
-    }]
+    }],
+     acctId: {
+        type: Schema.Types.ObjectId,
+        ref: "Account"
+    }
 });
 
 const FamilyMember = mongoose.model("FamilyMembers", FamilyMemberSchema);
