@@ -1,26 +1,37 @@
 import React from 'react';
 import * as $ from "axios";
-import { Container, Row, Button, Col } from 'reactstrap';
-import { Link } from "react-router-dom";
-import LoginForm from './LoginForm';
-import AddFamily from './addFamily';
-import AddModal from './AddModal';
+import { Container, Row, Col } from 'reactstrap';
+// import { Link } from "react-router-dom";
+import LoginForm from './loginForm';
+import FamilyView from './familyView';
+import AddMemberModal from './addMemberModal';
 
 class Family extends React.Component {
 
     state = {
         username: '',
         password: '',
-
-        familyname: '',
+        // acctIId: localStorage.getItem('userId'),
+        // familyname: localStorage.getItem('familyname'),
         acctId: '',
-
+        familyname: '',
         memberName: '',
-        members: [],
-        familes: []
+        members: []
     }
-    
-    
+
+    handleChange = e => {
+        e.preventDefault();
+        const { name, value } = e.target;
+        this.setState({ [name]: value });
+    }
+
+    getFamilyMembers = (acctId) => {
+        $.get('/api/familyMembers/' + acctId)
+            .then((res) => {
+                console.log(res);
+                this.setState({ members: res.data });
+            });
+    }
     // DELETE this form (fake login) once switch to /api/users/session authentication
     handleClick = e => {
         e.preventDefault();
@@ -32,30 +43,8 @@ class Family extends React.Component {
             .then((res) => {
                 console.log(res);
                 this.setState({ familyname: res.data[0].familyname, acctId: res.data[0]._id });
+                this.getFamilyMembers(this.state.acctId);
             });
-    }
-
-    handleChange = e => {
-        e.preventDefault();
-        const { name, value } = e.target;
-        this.setState({ [name]: value });
-    }
-
-    componentDidMount = () => {
-        $.get('/api/familyMembers/'+ this.state.acctId)
-            .then((res) => {
-                console.log(res);
-                // this.setState({ familes: res.data });
-            });
-        // console.log(this.state.familes);
-    }
-
-    getFamilyMembers = (acctId) => {
-        $.get('/api/familyMembers/'+ acctId)
-        .then( (res) => {
-            console.log(res);
-            this.setState({ members: res.data});
-        });
     }
 
     addFamilyMembers = e => {
@@ -85,30 +74,23 @@ class Family extends React.Component {
                         username={this.state.username}
                         password={this.state.password}
                     />
-                </Row>
+                </Row><br></br>
                 <Row>
                     <Col>
-                        <AddFamily
-                            familyname={this.state.familyname}
-                            account={this.state.familes} 
-                            members={this.members}
-                        />
-                        
-                    </Col>
-                    <Col>
-                        <Button color='link'>Add Members</Button>
-                        <AddModal buttonLabel='Add Members'
+                        <AddMemberModal buttonLabel='Add Members'
                             handleChange={this.handleChange}
                             memberName={this.state.memberName}
                             addFamilyMembers={this.addFamilyMembers}
+                        /><br></br>
+                        <FamilyView
+                            familyname={this.state.familyname}
+                            members={this.state.members}
                         />
                     </Col>
-
-
                 </Row>
             </Container>
         )
     }
 }
 
-export default Family
+export default Family;

@@ -116,7 +116,7 @@ module.exports = function (app) {
     //         });
     // });
 
-    //MIGHT THIS ROUTE CHANGE TO USE USER MODEL 
+    //MIGHT CHANGE THIS ROUTE TO USE USER MODEL 
     // retrived all accounts info for DEV purpose testing db connection and GET Accounts route
     app.get("/api/accounts", function (req, res) {
         Account.find()

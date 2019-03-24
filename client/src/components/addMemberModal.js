@@ -10,7 +10,7 @@ import {
   Input
 } from 'reactstrap';
 
-class AddModal extends React.Component {
+class AddMemberModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -29,7 +29,7 @@ class AddModal extends React.Component {
     return (
       <div>
         <Button color="outline-info" onClick={this.toggle}>{this.props.buttonLabel}
-        </Button>
+        </Button><br></br>
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
           <ModalHeader toggle={this.toggle}>Add a family member...</ModalHeader>
           <ModalBody>
@@ -52,4 +52,4 @@ class AddModal extends React.Component {
   }
 }
 
-export default AddModal;
+export default AddMemberModal;
