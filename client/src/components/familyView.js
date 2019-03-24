@@ -1,11 +1,17 @@
 import React from 'react';
+import {Button} from 'reactstrap';
 
 const FamilyView = props => (
     <div>
-        <h5>{props.familyname}</h5>
+        {props.isAuthenticated ? (
+            <h5>{props.familyname}</h5>
+        ) : (
+            <h6>Login to add family members</h6>
+        )}
         {props.members.map(member => (
             <div key={member._id}>
-                <p>{member.name}     Doodle Bucks:     {member.doddlebugBucks}</p>
+                <p><Button color='link' size='lg'>{member.name}</Button>
+                      Doodle Bucks:   {member.doddlebugBucks}</p>
             </div>
         )
         )}

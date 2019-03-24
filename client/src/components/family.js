@@ -1,7 +1,7 @@
 import React from 'react';
 import * as $ from "axios";
-import { Container, Row, Col } from 'reactstrap';
-// import { Link } from "react-router-dom";
+import { Container, Row } from 'reactstrap';
+import { Link } from "react-router-dom";
 import LoginForm from './loginForm';
 import FamilyView from './familyView';
 import AddMemberModal from './addMemberModal';
@@ -11,10 +11,11 @@ class Family extends React.Component {
     state = {
         username: '',
         password: '',
-        // acctIId: localStorage.getItem('userId'),
-        // familyname: localStorage.getItem('familyname'),
         acctId: '',
         familyname: '',
+        // acctIId: localStorage.getItem('userId'),
+        // familyname: localStorage.getItem('familyname'),
+        isAuthenticated: false,
         memberName: '',
         members: []
     }
@@ -42,7 +43,14 @@ class Family extends React.Component {
         $.post('/api/login', loginAccount)
             .then((res) => {
                 console.log(res);
-                this.setState({ familyname: res.data[0].familyname, acctId: res.data[0]._id });
+                this.setState({
+                    familyname: res.data[0].familyname,
+                    acctId: res.data[0]._id,
+                    isAuthenticated: !this.state.isAuthenticated,
+                    username: '',
+                    password: ''
+                });
+                localStorage.setItem('acctId', res.data[0]._id);
                 this.getFamilyMembers(this.state.acctId);
             });
     }
@@ -66,7 +74,7 @@ class Family extends React.Component {
 
     render() {
         return (
-            <Container className='App'>
+            <Container>
                 <Row>
                     <LoginForm
                         handleChange={this.handleChange}
@@ -75,19 +83,20 @@ class Family extends React.Component {
                         password={this.state.password}
                     />
                 </Row><br></br>
-                <Row>
-                    <Col>
-                        <AddMemberModal buttonLabel='Add Members'
-                            handleChange={this.handleChange}
-                            memberName={this.state.memberName}
-                            addFamilyMembers={this.addFamilyMembers}
-                        /><br></br>
-                        <FamilyView
-                            familyname={this.state.familyname}
-                            members={this.state.members}
-                        />
-                    </Col>
-                </Row>
+                <nav>
+                    <Link to={'/family'} >Home | </Link>
+                    <Link to={'/family/add'} >Quests</Link>
+                </nav>
+                <AddMemberModal buttonLabel='Add Members'
+                    handleChange={this.handleChange}
+                    memberName={this.state.memberName}
+                    addFamilyMembers={this.addFamilyMembers}
+                /><br></br>
+                <FamilyView
+                    familyname={this.state.familyname}
+                    members={this.state.members}
+                    isAuthenticated={this.state.isAuthenticated}
+                />
             </Container>
         )
     }

@@ -3,6 +3,7 @@ const hash = require("../hash");
 const jwt = require("jsonwebtoken");
 const Account = require('../models/Account');
 const FamilyMember = require('../models/FamilyMembers');
+const Quest = require('../models/Quest');
 
 //verifies Token
 const verifyToken = function (req, res, next) {
@@ -105,31 +106,45 @@ module.exports = function (app) {
             });
     });
 
-    // app.get("/api/familyMembers", function (req, res) {
-    //     FamilyMember.find()
-    //         .populate('acctId')
-    //         .then(function (members) {
-    //             res.json(members);
-    //         })
-    //         .catch(function (error) {
-    //             res.jason({ error: error });
-    //         });
-    // });
-
-    //MIGHT CHANGE THIS ROUTE TO USE USER MODEL 
-    // retrived all accounts info for DEV purpose testing db connection and GET Accounts route
-    app.get("/api/accounts", function (req, res) {
-        Account.find()
-            .then(function (account) {
-                res.json(account);
+    //route to retrieve all quests for a single account
+    app.get("/api/quests/:id", function (req, res) {
+        Quest.find({ acctId: req.params.id })
+            .populate('acctId')
+            .then(function (quests) {
+                res.json(quests);
             })
             .catch(function (error) {
                 res.jason({ error: error });
             });
     });
 
+    //==================================================
+    //================  Post Routes  ===================
+    //================================================== 
 
-    //================  Post Routes  =================== 
+    
+    //route to create family members
+    app.post('/api/familyMembers', function (req, res) {
+        FamilyMember.create(req.body)
+            .then(function (member) {
+                res.json(member);
+            })
+            .catch(function (err) {
+                res.json(err);
+            });
+    });
+
+    //route to create quests
+    app.post('/api/quests', function (req, res) {
+        Quest.create(req.body)
+            .then(function (quest) {
+                res.json(quest);
+            })
+            .catch(function (err) {
+                res.json(err);
+            });
+    });
+
     //DELETE THIS ROUTE WHEN SWITCH TO AUTHENTICATED LOGIN ROUTE
     app.post('/api/login', function (req, res) {
         Account.find({
@@ -143,7 +158,9 @@ module.exports = function (app) {
                 res.json(err);
             });
     });
-    // testing route to create an entry in Account.js FOR DEV purpose SHOULD REMOVE LATER to work with User.js?
+    // For DEV purpose I need an account ID for adding family members and quests
+    // in order to setItem/getItem in localStorage, need this route to create an entry in Account
+    //SHOULD REMOVE ONCE THE LOGIN AUTHENTICATION IS UP
     app.post('/api/accounts', function (req, res) {
         Account.create(req.body)
             .then(function (account) {
@@ -154,40 +171,5 @@ module.exports = function (app) {
             });
     });
 
-
-    //route to create family members
-    app.post('/api/familyMembers', function (req, res) {
-        FamilyMember.create(req.body)
-            .then(function (member) {
-                res.json(member);
-            })
-            .catch(function (err) {
-                res.json(err);
-            });
-    });
-
-    /**
-    * these routes for testing purpose only
-    */
-    // for testing purpose
-    app.delete("/api/familyMembers/:id", function (req, res) {
-        FamilyMember.findOneAndDelete({ _id: req.params.id })
-            .then(function (data) {
-                res.json(data)
-            }).catch(function (error) {
-                res.json({ error: error });
-            });
-    });
-
-    // for testing purpose
-    app.delete("/api/accounts/:id", function (req, res) {
-        Account.findOneAndDelete({ _id: req.params.id })
-            .then(function (data) {
-                res.json(data)
-            }).catch(function (error) {
-                res.json({ error: error });
-            });
-    });
-
-
+   
 };
