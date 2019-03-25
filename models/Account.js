@@ -13,7 +13,8 @@ const AccountSchema = new Schema ({
     password: {
         type: String,
         required: "password is required"
-    }
+    },
+    salt: String
 });
 
 const Account = mongoose.model("Account", AccountSchema);
