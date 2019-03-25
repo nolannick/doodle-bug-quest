@@ -1,6 +1,8 @@
-const User = require("../models/User");
+const Account = require("../models/Account");
 const hash = require("../hash");
 const jwt = require("jsonwebtoken");
+const checkAuth = require('../checkAuth');
+
 
 //verifies Token
 const verifyToken = function (req, res, next) {
@@ -33,9 +35,10 @@ module.exports = function (app) {
         const user = {
             username: req.body.username,
             password: newPassword,
+            familyname: req.body.familyname,
             salt: salt
         };
-        User.create(user).then(function (newUser) {
+        Account.create(user).then(function (newUser) {
             res.json(newUser);
         }).catch(function (error) {
             res.json({ error: error });
@@ -44,13 +47,14 @@ module.exports = function (app) {
 
     //route to login
     app.post("/api/users/session", function (req, res) {
-        User.findOne({ username: req.body.username }).then(function (user) {
+        Account.findOne({ username: req.body.username }).then(function (user) {
             const passwordCheck = hash.encrypt(req.body.password, user.salt);
             if (user.password === passwordCheck) {
                 const verifiedUser = {
-                    _id: user._id
+                    acct_id: user._id,
+                    famName: user.familyname
                 }
-                jwt.sign(verifiedUser, "funfunfun", { expiresIn: "3h" }, function (err, token) {
+                jwt.sign(verifiedUser, process.env.JWT_KEY, { expiresIn: "3h" }, function (err, token) {
                     res.json({ verifiedUser, token });
                 });
             }
@@ -66,24 +70,17 @@ module.exports = function (app) {
   //-------------Data Retrieval Routes.  -------------------
     //route to retrieve a profile by userId. THIS IS AN EXAMPLE OF HOW WE SHOULD QUERY WTH TOKEN.
     //This needs to be replaced with a valid route once other models are created.
-    app.get("/api/users/:userId", verifyToken, function (req, res) {
-        jwt.verify(req.token, "funfunfun", function (err, authData) {
-            if (err) {
-                res.sendStatus(403);
-            } else {
-                User.findById(req.params.userId).populate("profile").then(function (user) {
-                    res.json(user.profile);
+    app.get("/api/users/:userId", verifyToken, checkAuth, function (req, res) {
+                Account.findById(req.params.userId).then(function (user) {
+                    res.json(user);
                 }).catch(function (error) {
                     res.json({ error: error });
                 });
-            }
-        });
     });
 
-      v
     //route to retrieve all users for dev purposes. THIS SHOULD NOT BE IN PRODUCTION
     app.get("/api/users", function (req, res) {
-        User.find().then(function (allUsers) {
+        Account.find().then(function (allUsers) {
             res.json(allUsers);
         }).catch(function (error) {
             res.jason({ error: error });
