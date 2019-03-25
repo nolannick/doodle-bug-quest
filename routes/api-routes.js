@@ -1,14 +1,11 @@
 const Account = require("../models/Account");
 const hash = require("../hash");
 const jwt = require("jsonwebtoken");
-<<<<<<< HEAD
 const Account = require('../models/Account');
 const FamilyMember = require('../models/FamilyMembers');
 const Quest = require('../models/Quest');
-=======
 const checkAuth = require('../checkAuth');
 
->>>>>>> 396ef568bc902935d8d0a224a3b5dae58bb53ef1
 
 //verifies Token
 const verifyToken = function (req, res, next) {
@@ -84,10 +81,6 @@ module.exports = function (app) {
                 });
     });
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 396ef568bc902935d8d0a224a3b5dae58bb53ef1
     //route to retrieve all users for dev purposes. THIS SHOULD NOT BE IN PRODUCTION
     app.get("/api/users", function (req, res) {
         Account.find().then(function (allUsers) {
