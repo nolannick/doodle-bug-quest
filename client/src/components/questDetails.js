@@ -9,7 +9,8 @@ class QuestDetails extends React.Component {
         members: [],
         memberId: '',
         questId: '',
-        quests: []
+        doodlebugBucks: '',
+        token: localStorage.getItem('token')
     }
 
     onChange = e => {
@@ -27,40 +28,38 @@ class QuestDetails extends React.Component {
 
     onClick = () => {
         this.getFamilyMembers(this.state.acctId);
-        this.setState({ questId: this.props.questKey});
+        this.setState({ questId: this.props.questKey, doodlebugBucks: this.props.questbucks});
     }
 
-    // componentDidMount() {
-       
-    // }
 
-    getQuestValue = questId => {
-        $.get('/api/quest/' + questId)
-        .then( (res) => {
-           console.log(res);
-        });
-    }
 
     completeQuest = e => {
         e.preventDefault();
-        // console.log(this.state.memberId);
-        // console.log(this.state.questId);
-        const quest = {
-            id: this.state.questId
+        console.log(this.state.questId);
+        console.log(this.state.doodlebugBucks);
+        // const quest = {
+        //     id: this.state.questId
+        // }
+        // $.put('/api/familyMembers/quest/' + this.state.memberId, quest)
+        // .then( (res) => {
+        //     console.log(res);
+        //     const quests = res.data.quests;
+        //     console.log(quests);
+           
+        // });
+        
+        const newQuest = {
+            questId: this.state.questId,
+            doodlebugBucks: this.state.doodlebugBucks
         }
-        $.put('/api/familyMembers/quest/' + this.state.memberId, quest)
+        const config = {
+            headers: this.state.token
+        }
+        $.put('/api/familyMembers/familyMember/' + this.state.memberId, newQuest, config)
         .then( (res) => {
             console.log(res);
-            const quests = res.data.quests;
-            console.log(quests);
-            // let scores = 0;
-            // for ( let i = 0; i < quests.length; i++){
-                // this.getQuestValue(quest[i])
-                // scores = scores + quests[i].value;
-            // }
-            // console.log(scores);
+           
         });
-
     }
 
     render() {
