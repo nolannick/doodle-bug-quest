@@ -7,7 +7,8 @@ const QuestView = props => (
             <div>
                 {props.quests.map(quest => (
                     <div key={quest._id}>
-                        <p>{quest.title}{': '}{quest.description}{', doodle bucks:'}{quest.value}</p>
+                        <p> <a href='#'>{quest.title}</a>{': '}{quest.description}{', doodle bucks:'}{quest.value}</p>
+                       
                     </div>
                 )
                 )}

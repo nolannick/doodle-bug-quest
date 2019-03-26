@@ -1,10 +1,9 @@
 const Account = require("../models/Account");
 const hash = require("../hash");
 const jwt = require("jsonwebtoken");
-const Account = require('../models/Account');
+const checkAuth = require('../checkAuth');
 const FamilyMember = require('../models/FamilyMembers');
 const Quest = require('../models/Quest');
-const checkAuth = require('../checkAuth');
 
 
 //verifies Token
@@ -139,32 +138,6 @@ module.exports = function (app) {
             })
             .catch(function (err) {
                 res.json(err);
-            });
-    });
-
-    //DELETE THIS ROUTE WHEN SWITCH TO AUTHENTICATED LOGIN ROUTE
-    app.post('/api/login', function (req, res) {
-        Account.find({
-            username: req.body.username,
-            password: req.body.password
-        }).then(function (data) {
-            // console.log('inside api', data);
-            res.json(data);
-        })
-            .catch(function (err) {
-                res.json(err);
-            });
-    });
-    // For DEV purpose I need an account ID for adding family members and quests
-    // in order to setItem/getItem in localStorage, need this route to create an entry in Account
-    //SHOULD REMOVE ONCE THE LOGIN AUTHENTICATION IS UP
-    app.post('/api/accounts', function (req, res) {
-        Account.create(req.body)
-            .then(function (account) {
-                res.json(account);
-            })
-            .catch(function (err) {
-                res.jason({ err: err })
             });
     });
 

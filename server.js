@@ -17,7 +17,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/doodlebugquestDB"
 mongoose.connect(MONGODB_URI)
-// mongoose.connect('mongodb://localhost/doodlebugquestDB', { useNewUrlParser: true });
 
 
 require('./routes/api-routes')(app);

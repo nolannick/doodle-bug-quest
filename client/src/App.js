@@ -12,12 +12,6 @@ import Reward from './components/reward';
 import AddReward from './components/addReward';
 
 class App extends Component {
-  state = {
-    user: {
-      acctId: "",
-      familyname: ''
-    }
-  }
   render() {
     return (
       <BrowserRouter>
