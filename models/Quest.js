@@ -15,7 +15,7 @@ const QuestSchema = new Schema ({
     },
     show: {
         type: Boolean, 
-        default: false
+        default: true
     },
     acctId: {
         type: Schema.Types.ObjectId,
