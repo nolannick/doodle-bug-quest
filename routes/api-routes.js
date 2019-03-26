@@ -6,19 +6,15 @@ const checkAuth = require("../checkAuth");
 const FamilyMember = require("../models/FamilyMembers");
 const Quest = require("../models/Quest");
 const Reward = require("../models/Reward");
+// import { token } from '../client/src/components/family';
 
 //verifies Token
 const verifyToken = function(req, res, next) {
-  //Get auth header value
-  const bearerHeader = req.headers["authorization"];
+//   const bearerHeader = token;
+  const bearerHeader = req.headers.authorization;
   // Check if bearer is undefined
   if (typeof bearerHeader !== undefined) {
-    // Split at the space
-    const bearer = bearerHeader.split(" ");
-    // Get token from array
-    const bearerToken = bearer[1];
-    // Set the token
-    req.token = bearerToken;
+    req.token = bearerHeader;
     // Next middleware
     next();
   } else {
@@ -242,7 +238,11 @@ module.exports = function(app) {
   //------------------------------
 
   //Route to update family member
-  app.put("/api/familyMembers/familyMember/:id", verifyToken, checkAuth, function(req, res) {
+  app.put(
+    "/api/familyMembers/familyMember/:id",
+    verifyToken,
+    checkAuth,
+    function(req, res) {
       const val = req.body.doodlebugBucks;
       const reward = req.body.rewardId;
       const quest = req.body.questId;
