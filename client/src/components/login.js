@@ -1,5 +1,5 @@
 import React from "react";
-import LoginForm from "./LoginForm";
+import LoginForm from "./loginForm";
 import RegistrationForm from "./registrationForm";
 import * as $ from "axios";
 
@@ -88,7 +88,7 @@ class Login extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="Bug">
         <Alert alert={this.state.alert} />
         {this.state.toRegister ? (
           <RegistrationForm

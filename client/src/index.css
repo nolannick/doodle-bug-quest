@@ -2,41 +2,53 @@ body {
 
   margin: 0 px;
   padding: 20;
-  border: 20px;
+  height: 100%;
+  /*border: 20px;*/
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /*border: 4px solid black ;*/
+  border: 10% solid blue;
+   /*border: 5px solid black ;
+   
     border-image: 
         url("./thickbordercrayon2.svg")  /* source */
-        45 /                    /* slice */
-        36px 36px 36px 36px /    /* width */
-        1px 1px 1px 1px       /* outset */
-        round;  
+     /*   45 /                    /* slice */
+     /*  6px 46px 0px 46px /    /* width */
+     /*   1px 1px 1px 1px       /* outset */
+     /*   round;  
 
+}*/
 }
-
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
+.Bug {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 5%;
+}
+
 .Bugs{
   
-    background-image: /*linear-gradient(transparent, white 13%),*/ url('../src/images_use2.jpg');
+    background-image: /*linear-gradient(transparent, white 13%),*/ url('../src/rolypolyimage1.jpg');
     background-repeat: no-repeat;
     background-size: 50% auto;
     height: 80vh;
     background-Position: 'center';
-    padding-left: 20px;
+    padding-left: 30px;
+    border-left: 20%;
 
     
 }
 
 h1{
+  padding-top: 15px;
   text-align: center;
   color: darkslategrey;
 }
