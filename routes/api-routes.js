@@ -2,6 +2,7 @@ const Account = require("../models/Account");
 const hash = require("../hash");
 const jwt = require("jsonwebtoken");
 const checkAuth = require('../checkAuth');
+const Gif = require("../models/Gifs");
 
 
 //verifies Token
@@ -67,15 +68,15 @@ module.exports = function (app) {
             });
     });
 
-  //-------------Data Retrieval Routes.  -------------------
+    //-------------Data Retrieval Routes.  -------------------
     //route to retrieve a profile by userId. THIS IS AN EXAMPLE OF HOW WE SHOULD QUERY WTH TOKEN.
     //This needs to be replaced with a valid route once other models are created.
     app.get("/api/users/:userId", verifyToken, checkAuth, function (req, res) {
-                Account.findById(req.params.userId).then(function (user) {
-                    res.json(user);
-                }).catch(function (error) {
-                    res.json({ error: error });
-                });
+        Account.findById(req.params.userId).then(function (user) {
+            res.json(user);
+        }).catch(function (error) {
+            res.json({ error: error });
+        });
     });
 
     //route to retrieve all users for dev purposes. THIS SHOULD NOT BE IN PRODUCTION
@@ -87,5 +88,29 @@ module.exports = function (app) {
         });
     });
 
+    app.post("/api/gifs", function (req, res) {
+        Gif.insertMany(req.body).then(function (newGif) {
+            res.json(newGif);
+        }).catch(function (error) {
+            res.json({ error: error });
+        });
+    })
+
+
+    //Returns 1 random Gif document
+    app.get("/api/gifs", function (req, res) {
+        Gif.count().exec(function (err, count) {
+
+            // Get a random entry
+            var random = Math.floor(Math.random() * count)
+
+            // Again query all gifs but only fetch one offset by our random #
+            Gif.findOne().skip(random).exec(
+                function (err, result) {
+                    // Tada! random gif
+                    res.json(result)
+                })
+        })
+    });
 
 };
