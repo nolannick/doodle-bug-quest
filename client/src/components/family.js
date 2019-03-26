@@ -1,6 +1,6 @@
 import React from 'react';
 import * as $ from "axios";
-import { Container, Row } from 'reactstrap';
+import { Container } from 'reactstrap';
 import { Link } from "react-router-dom";
 import FamilyView from './familyView';
 import AddMemberModal from './addMemberModal';

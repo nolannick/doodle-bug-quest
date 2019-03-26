@@ -89,6 +89,9 @@ module.exports = function (app) {
         });
     });
 
+    //==================================================
+    //================  GET Routes  ===================
+    //================================================== 
 
     //route to retrieve all family members for a single account
     app.get("/api/familyMembers/:id", function (req, res) {
@@ -114,8 +117,20 @@ module.exports = function (app) {
             });
     });
 
+     //route to retrieve a SINGLE quest based on quest Id
+     app.get("/api/quest/:id", function (req, res) {
+        Quest.find({ _id: req.params.id })
+            .populate('acctId')
+            .then(function (quests) {
+                res.json(quests);
+            })
+            .catch(function (error) {
+                res.jason({ error: error });
+            });
+    });
+
     //==================================================
-    //================  Post Routes  ===================
+    //================  POST Routes  ===================
     //================================================== 
 
     
@@ -130,7 +145,7 @@ module.exports = function (app) {
             });
     });
 
-    //route to create quests
+    //route to create family quests
     app.post('/api/quests', function (req, res) {
         Quest.create(req.body)
             .then(function (quest) {
@@ -141,5 +156,23 @@ module.exports = function (app) {
             });
     });
 
+
+    //==================================================
+    //================  PUT Routes  ===================
+    //================================================== 
+
+    // route to add quest id to familly members' quests
+    app.put('/api/familyMembers/quest/:id', function (req, res) {
+        console.log('PUT API params: ', req.params.id);
+        FamilyMember.findOneAndUpdate({_id: req.params.id}, {$push: {quests: req.body.id}}, { new: true })
+          .then(function (data) {
+            res.json(data);
+          })
+          .catch(function (err) {
+            res.json(err);
+          });
+      });
+
+    
    
 };
