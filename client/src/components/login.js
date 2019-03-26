@@ -1,5 +1,5 @@
 import React from "react";
-import LoginForm from "./loginForm";
+import LoginForm from "./LoginForm";
 import RegistrationForm from "./registrationForm";
 import * as $ from "axios";
 
