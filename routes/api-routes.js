@@ -2,6 +2,8 @@ const Account = require("../models/Account");
 const hash = require("../hash");
 const jwt = require("jsonwebtoken");
 const checkAuth = require('../checkAuth');
+const FamilyMember = require('../models/FamilyMembers');
+const Quest = require('../models/Quest');
 
 
 //verifies Token
@@ -67,7 +69,7 @@ module.exports = function (app) {
             });
     });
 
-  //-------------Data Retrieval Routes.  -------------------
+    //-------------Data Retrieval Routes.  -------------------
     //route to retrieve a profile by userId. THIS IS AN EXAMPLE OF HOW WE SHOULD QUERY WTH TOKEN.
     //This needs to be replaced with a valid route once other models are created.
     app.get("/api/users/:userId", verifyToken, checkAuth, function (req, res) {
@@ -88,4 +90,56 @@ module.exports = function (app) {
     });
 
 
+    //route to retrieve all family members for a single account
+    app.get("/api/familyMembers/:id", function (req, res) {
+        FamilyMember.find({ acctId: req.params.id })
+            .populate('acctId')
+            .then(function (members) {
+                res.json(members);
+            })
+            .catch(function (error) {
+                res.jason({ error: error });
+            });
+    });
+
+    //route to retrieve all quests for a single account
+    app.get("/api/quests/:id", function (req, res) {
+        Quest.find({ acctId: req.params.id })
+            .populate('acctId')
+            .then(function (quests) {
+                res.json(quests);
+            })
+            .catch(function (error) {
+                res.jason({ error: error });
+            });
+    });
+
+    //==================================================
+    //================  Post Routes  ===================
+    //================================================== 
+
+    
+    //route to create family members
+    app.post('/api/familyMembers', function (req, res) {
+        FamilyMember.create(req.body)
+            .then(function (member) {
+                res.json(member);
+            })
+            .catch(function (err) {
+                res.json(err);
+            });
+    });
+
+    //route to create quests
+    app.post('/api/quests', function (req, res) {
+        Quest.create(req.body)
+            .then(function (quest) {
+                res.json(quest);
+            })
+            .catch(function (err) {
+                res.json(err);
+            });
+    });
+
+   
 };
