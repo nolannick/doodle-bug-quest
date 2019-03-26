@@ -8,7 +8,8 @@ const FamilyMemberSchema = new Schema ({
     },
     doddlebugBucks: {
         type: Number,
-        required: "password is required"
+        required: "password is required",
+        default: 0
     },
     quests: [{
         type: Schema.Types.ObjectId,
@@ -18,7 +19,7 @@ const FamilyMemberSchema = new Schema ({
         type: Schema.Types.ObjectId,
         ref: "Reward"
     }],
-     acctId: {
+    acctId: {
         type: Schema.Types.ObjectId,
         ref: "Account"
     }
