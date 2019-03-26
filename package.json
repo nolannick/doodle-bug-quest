@@ -20,6 +20,7 @@
     },
     "dependencies": {
         "axios": "^0.16.2",
+        "bootstrap": "^4.3.1",
         "crypto-random-string": "^1.0.0",
         "dotenv": "^7.0.0",
         "express": "^4.16.4",
@@ -28,6 +29,8 @@
         "mongoose": "^5.4.16",
         "mongoose-unique-validator": "^2.0.2",
         "pbkdf2": "^3.0.17",
+        "react": "^16.8.5",
+        "react-dom": "^16.8.5",
         "react-router-dom": "^4.3.1",
         "reactstrap": "^7.1.0"
     }
