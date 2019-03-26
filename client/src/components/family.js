@@ -11,7 +11,8 @@ class Family extends React.Component {
         acctId: localStorage.getItem('acct_id'),
         familyname: localStorage.getItem('familyName'),
         memberName: '',
-        members: []
+        members: [],
+        token: localStorage.getItem("token")
     }
 
     handleChange = e => {
@@ -21,7 +22,10 @@ class Family extends React.Component {
     }
 
     getFamilyMembers = (acctId) => {
-        $.get('/api/familyMembers/' + acctId)
+        const config = {
+            headers: {authorization: this.state.token}
+        };
+        $.get('/api/familyMembers/' + acctId, config )
             .then((res) => {
                 // console.log(res);
                 this.setState({ members: res.data });
