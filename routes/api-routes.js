@@ -4,6 +4,7 @@ const jwt = require("jsonwebtoken");
 const checkAuth = require("../checkAuth");
 const FamilyMember = require("../models/FamilyMembers");
 const Quest = require("../models/Quest");
+const Reward = require('../models/Reward')
 
 //verifies Token
 const verifyToken = function(req, res, next) {
@@ -109,6 +110,18 @@ module.exports = function(app) {
       });
   });
 
+  //route to retrieve a single family member by Id
+  app.get("/api/familyMembers/familyMember:id", verifyToken, checkAuth, function(req, res) {
+    FamilyMember.find({ _Id: req.params.id })
+      .populate("acctId")
+      .then(function(member) {
+        res.json(member);
+      })
+      .catch(function(error) {
+        res.jason({ error: error });
+      });
+  });
+
   //route to retrieve all quests for a single account
   app.get("/api/quests/:id", verifyToken, checkAuth, function(req, res) {
     Quest.find({ acctId: req.params.id })
@@ -144,7 +157,7 @@ module.exports = function(app) {
       });
   });
 
-  //route to retrieve individual quest by questId
+  //route to retrieve individual reward by rewardId
   app.get("/api/rewards/reward/:id", verifyToken, checkAuth, function(
     req,
     res
@@ -201,11 +214,11 @@ module.exports = function(app) {
 
   //Route to update family member
   app.put(
-    "/api/familymembers/familymember/:id",
+    "/api/familyMembers/familyMember/:id",
     verifyToken,
     checkAuth,
     function(req, res) {
-      FamilyMembers.findByIdAndUpdate(
+      FamilyMember.findByIdAndUpdate(
         { _id: req.params.id },
         { $set: req.body }
       )
