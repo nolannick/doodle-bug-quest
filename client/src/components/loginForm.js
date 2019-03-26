@@ -12,9 +12,9 @@ const LoginForm = (props) => (
                 <input className="inputField" name="password" type="password" placeholder="Enter Password" onChange={props.changeHandler}></input>
             </div>
         </div>
-        <br/><br/><br/><br/>
+        <br/>
         <button className="loginButton" type="submit" onClick={props.login}>Login</button>
-        <p>Not yet Registered? Click <a href="/#" onClick={props.toggleLogin}>here</a> to register instead.</p>
+        <p>Not yet Registered? Click <a href="/#" onClick={props.toggleLogin}>here</a> to register instead.</p><br/><br/><br/><br/><br/><br/>
     </form>
 )
 
