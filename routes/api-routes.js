@@ -1,10 +1,11 @@
 const Account = require("../models/Account");
 const hash = require("../hash");
 const jwt = require("jsonwebtoken");
-const checkAuth = require('../checkAuth');
-const FamilyMember = require('../models/FamilyMembers');
-const Quest = require('../models/Quest');
-
+const Gif = require("../models/Gifs");
+const checkAuth = require("../checkAuth");
+const FamilyMember = require("../models/FamilyMembers");
+const Quest = require("../models/Quest");
+const Reward = require("../models/Reward");
 
 //verifies Token
 const verifyToken = function (req, res, next) {
@@ -20,14 +21,12 @@ const verifyToken = function (req, res, next) {
         req.token = bearerToken;
         // Next middleware
         next();
-    }
-    else {
+    } else {
         res.sendStatus(403);
     }
-}
+};
 
 module.exports = function (app) {
-
     //-------------routes to register/login-------------
 
     //route to register
@@ -40,30 +39,37 @@ module.exports = function (app) {
             familyname: req.body.familyname,
             salt: salt
         };
-        Account.create(user).then(function (newUser) {
-            res.json(newUser);
-        }).catch(function (error) {
-            res.json({ error: error });
-        });
+        Account.create(user)
+            .then(function (newUser) {
+                res.json(newUser);
+            })
+            .catch(function (error) {
+                res.json({ error: error });
+            });
     });
 
     //route to login
     app.post("/api/users/session", function (req, res) {
-        Account.findOne({ username: req.body.username }).then(function (user) {
-            const passwordCheck = hash.encrypt(req.body.password, user.salt);
-            if (user.password === passwordCheck) {
-                const verifiedUser = {
-                    acct_id: user._id,
-                    famName: user.familyname
+        Account.findOne({ username: req.body.username })
+            .then(function (user) {
+                const passwordCheck = hash.encrypt(req.body.password, user.salt);
+                if (user.password === passwordCheck) {
+                    const verifiedUser = {
+                        acct_id: user._id,
+                        famName: user.familyname
+                    };
+                    jwt.sign(
+                        verifiedUser,
+                        process.env.JWT_KEY,
+                        { expiresIn: "3h" },
+                        function (err, token) {
+                            res.json({ verifiedUser, token });
+                        }
+                    );
+                } else {
+                    res.json("Wrong Password");
                 }
-                jwt.sign(verifiedUser, process.env.JWT_KEY, { expiresIn: "3h" }, function (err, token) {
-                    res.json({ verifiedUser, token });
-                });
-            }
-            else {
-                res.json("Wrong Password");
-            }
-        })
+            })
             .catch(function (error) {
                 res.json({ error: error });
             });
@@ -73,30 +79,53 @@ module.exports = function (app) {
     //route to retrieve a profile by userId. THIS IS AN EXAMPLE OF HOW WE SHOULD QUERY WTH TOKEN.
     //This needs to be replaced with a valid route once other models are created.
     app.get("/api/users/:userId", verifyToken, checkAuth, function (req, res) {
-                Account.findById(req.params.userId).then(function (user) {
-                    res.json(user);
-                }).catch(function (error) {
-                    res.json({ error: error });
-                });
+        Account.findById(req.params.userId)
+            .then(function (user) {
+                res.json(user);
+            })
+            .catch(function (error) {
+                res.json({ error: error });
+            });
     });
 
     //route to retrieve all users for dev purposes. THIS SHOULD NOT BE IN PRODUCTION
     app.get("/api/users", function (req, res) {
-        Account.find().then(function (allUsers) {
-            res.json(allUsers);
-        }).catch(function (error) {
-            res.jason({ error: error });
-        });
+        Account.find()
+            .then(function (allUsers) {
+                res.json(allUsers);
+            })
+            .catch(function (error) {
+                res.jason({ error: error });
+                //-------------Data Retrieval Routes.  -------------------
+                //route to retrieve a profile by userId. THIS IS AN EXAMPLE OF HOW WE SHOULD QUERY WTH TOKEN.
+                //This needs to be replaced with a valid route once other models are created.
+                app.get("/api/account/:Id", verifyToken, checkAuth, function (req, res) {
+                    Account.findById(req.params.userId)
+                        .then(function (user) {
+                            res.json(user);
+                        })
+                        .catch(function (error) {
+                            res.json({ error: error });
+                        });
+                });
+            });
     });
 
-    //==================================================
-    //================  GET Routes  ===================
-    //================================================== 
+    //route to retrieve all users for dev purposes. THIS SHOULD NOT BE IN PRODUCTION
+    app.get("/api/users", function (req, res) {
+        Account.find()
+            .then(function (allUsers) {
+                res.json(allUsers);
+            })
+            .catch(function (error) {
+                res.jason({ error: error });
+            });
+    });
 
     //route to retrieve all family members for a single account
-    app.get("/api/familyMembers/:id", function (req, res) {
+    app.get("/api/familyMembers/:id", verifyToken, checkAuth, function (req, res) {
         FamilyMember.find({ acctId: req.params.id })
-            .populate('acctId')
+            .populate("acctId")
             .then(function (members) {
                 res.json(members);
             })
@@ -105,10 +134,30 @@ module.exports = function (app) {
             });
     });
 
+    //route to retrieve a single family member by Id
+    app.get(
+        "/api/familyMembers/familyMember:id",
+        verifyToken,
+        checkAuth,
+        function (req, res) {
+            FamilyMember.find({ _id: req.params.id })
+                .populate("acctId")
+                .then(function (member) {
+                    res.json(member);
+                })
+                .catch(function (error) {
+                    res.jason({ error: error });
+                });
+        }
+    );
+
+    //==================================================
+    //================  GET Routes  ===================
+    //==================================================
     //route to retrieve all quests for a single account
-    app.get("/api/quests/:id", function (req, res) {
+    app.get("/api/quests/:id", verifyToken, checkAuth, function (req, res) {
         Quest.find({ acctId: req.params.id })
-            .populate('acctId')
+            .populate("acctId")
             .then(function (quests) {
                 res.json(quests);
             })
@@ -117,12 +166,37 @@ module.exports = function (app) {
             });
     });
 
-     //route to retrieve a SINGLE quest based on quest Id
-     app.get("/api/quest/:id", function (req, res) {
+    //route to retrieve individual quest by questId
+    app.get("/api/quests/quest/:id", verifyToken, checkAuth, function (req, res) {
         Quest.find({ _id: req.params.id })
-            .populate('acctId')
-            .then(function (quests) {
-                res.json(quests);
+            .then(function (quest) {
+                res.json(quest);
+            })
+            .catch(function (error) {
+                res.jason({ error: error });
+            });
+    });
+
+    //route to retrieve all rewards for a single account
+    app.get("/api/rewards/:id", verifyToken, checkAuth, function (req, res) {
+        Reward.find({ acctId: req.params.id })
+            .populate("acctId")
+            .then(function (rewards) {
+                res.json(rewards);
+            })
+            .catch(function (error) {
+                res.jason({ error: error });
+            });
+    });
+
+    //route to retrieve individual reward by rewardId
+    app.get("/api/rewards/reward/:id", verifyToken, checkAuth, function (
+        req,
+        res
+    ) {
+        Reward.find({ _id: req.params.id })
+            .then(function (reward) {
+                res.json(reward);
             })
             .catch(function (error) {
                 res.jason({ error: error });
@@ -130,12 +204,11 @@ module.exports = function (app) {
     });
 
     //==================================================
-    //================  POST Routes  ===================
-    //================================================== 
+    //================  Post Routes  ===================
+    //==================================================
 
-    
     //route to create family members
-    app.post('/api/familyMembers', function (req, res) {
+    app.post("/api/familyMembers", verifyToken, checkAuth, function (req, res) {
         FamilyMember.create(req.body)
             .then(function (member) {
                 res.json(member);
@@ -145,11 +218,119 @@ module.exports = function (app) {
             });
     });
 
-    //route to create family quests
-    app.post('/api/quests', function (req, res) {
+    //route to create quests
+    app.post("/api/quests", verifyToken, checkAuth, function (req, res) {
         Quest.create(req.body)
             .then(function (quest) {
                 res.json(quest);
+            })
+            .catch(function (err) {
+                res.json(err);
+            });
+    });
+
+    //route to create rewards
+    app.post("/api/reward", verifyToken, checkAuth, function (req, res) {
+        Reward.create(req.body)
+            .then(function (reward) {
+                res.json(reward);
+            })
+            .catch(function (err) {
+                res.json(err);
+            });
+    });
+
+    //------------------------------
+    //--------PUT ROUTES------------
+    //------------------------------
+
+    //Route to update family member
+    app.put("/api/familyMembers/familyMember/:id", verifyToken, checkAuth, function (req, res) {
+        const val = req.body.doodlebugBucks;
+        const reward = req.body.rewardId;
+        const quest = req.body.questId;
+        FamilyMember.findByIdAndUpdate(
+            { _id: req.params.id },
+            {
+                $inc: { doodlebugBucks: val },
+                $push: { rewards: reward, quests: quest }
+            }
+        )
+            .then(function (res) {
+                console.log(res);
+                res.json({ message: "User has been successfully updated" });
+            })
+            .catch(function (err) {
+                res.json(err);
+            });
+    }
+    );
+
+    //Route to update reward
+    app.put("/api/rewards/reward/:id", verifyToken, checkAuth, function (
+        req,
+        res
+    ) {
+        Reward.findByIdAndUpdate({ _id: req.params.id }, { $set: req.body })
+            .then(function (res) {
+                console.log(res);
+                res.json({ message: "Reward has been successfully updated" });
+            })
+            .catch(function (err) {
+                res.json(err);
+            });
+    });
+
+    //Route to update quest
+    app.put("/api/quests/quest/:id", verifyToken, checkAuth, function (req, res) {
+        Reward.findByIdAndUpdate({ _id: req.params.id }, { $set: req.body })
+            .then(function (res) {
+                console.log(res);
+                res.json({ message: "Reward has been successfully updated" });
+            })
+            .catch(function (err) {
+                res.json(err);
+            });
+    });
+
+    //------------------------------
+    //--------DELETE ROUTES---------
+    //------------------------------
+
+    app.post("/api/gifs", function (req, res) {
+        Gif.insertMany(req.body)
+            .then(function (newGif) {
+                res.json(newGif);
+            })
+            .catch(function (error) {
+                res.json({ error: error });
+            });
+    });
+
+    //Returns 1 random Gif document
+    app.get("/api/gifs", function (req, res) {
+        Gif.count().exec(function (err, count) {
+            // Get a random entry
+            var random = Math.floor(Math.random() * count);
+
+            // Again query all gifs but only fetch one offset by our random #
+            Gif.findOne()
+                .skip(random)
+                .exec(function (err, result) {
+                    // Tada! random gif
+                    res.json(result);
+                });
+        });
+    });
+    //route to delete reward - NOTE: Doesn't actaully delete - just removes from view
+    app.delete("/api/rewards/reward/:id", verifyToken, checkAuth, function (
+        req,
+        res
+    ) {
+        Reward.findByIdAndUpdate({ _id: req.params.id }, { $set: { show: false } })
+            .then(function (res) {
+                console.log(res);
+                res.json({ message: "Reward has been successfully updated" });
             })
             .catch(function (err) {
                 res.json(err);
@@ -164,15 +345,27 @@ module.exports = function (app) {
     // route to add quest id to familly members' quests
     app.put('/api/familyMembers/quest/:id', function (req, res) {
         console.log('PUT API params: ', req.params.id);
-        FamilyMember.findOneAndUpdate({_id: req.params.id}, {$push: {quests: req.body.id}}, { new: true })
-          .then(function (data) {
-            res.json(data);
-          })
-          .catch(function (err) {
-            res.json(err);
-          });
-      });
+        FamilyMember.findOneAndUpdate({ _id: req.params.id }, { $push: { quests: req.body.id } }, { new: true })
+            .then(function (data) {
+                res.json(data);
+            })
+            .catch(function (err) {
+                res.json(err);
+            });
+    });
 
-    
-   
+    //route to delete quest - NOTE: Doesn't actaully delete - just removes from view
+    app.delete("/api/quests/quest/:id", verifyToken, checkAuth, function (
+        req,
+        res
+    ) {
+        Reward.findByIdAndUpdate({ _id: req.params.id }, { $set: { show: false } })
+            .then(function (res) {
+                console.log(res);
+                res.json({ message: "Reward has been successfully updated" });
+            })
+            .catch(function (err) {
+                res.json(err);
+            });
+    });
 };
