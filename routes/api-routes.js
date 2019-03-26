@@ -76,7 +76,7 @@ module.exports = function(app) {
   //-------------Data Retrieval Routes.  -------------------
   //route to retrieve a profile by userId. THIS IS AN EXAMPLE OF HOW WE SHOULD QUERY WTH TOKEN.
   //This needs to be replaced with a valid route once other models are created.
-  app.get("/api/users/:userId", verifyToken, checkAuth, function(req, res) {
+  app.get("/api/account/:Id", verifyToken, checkAuth, function(req, res) {
     Account.findById(req.params.userId)
       .then(function(user) {
         res.json(user);
@@ -145,7 +145,10 @@ module.exports = function(app) {
   });
 
   //route to retrieve individual quest by questId
-  app.get("/api/rewards/reward/:id", verifyToken, checkAuth, function(req, res) {
+  app.get("/api/rewards/reward/:id", verifyToken, checkAuth, function(
+    req,
+    res
+  ) {
     Reward.find({ _Id: req.params.id })
       .then(function(reward) {
         res.json(reward);
@@ -197,13 +200,74 @@ module.exports = function(app) {
   //------------------------------
 
   //Route to update family member
-  app.put('/api/familymembers/:id', verifyToken, checkAuth, function(req, res) {
-      FamilyMembers.findByIdAndUpdate({_id: req.params.id}, {$set: req.body})
-      .then(function(res) {
+  app.put(
+    "/api/familymembers/familymember/:id",
+    verifyToken,
+    checkAuth,
+    function(req, res) {
+      FamilyMembers.findByIdAndUpdate(
+        { _id: req.params.id },
+        { $set: req.body }
+      )
+        .then(function(res) {
           console.log(res);
-        res.json({message: 'User has been successfully updated'});
-      }).catch(function(err) {
+          res.json({ message: "User has been successfully updated" });
+        })
+        .catch(function(err) {
+          res.json(err);
+        });
+    }
+  );
+
+  //Route to update reward
+  app.put("/api/rewards/reward/:id", verifyToken, checkAuth, function(req, res) {
+    Reward.findByIdAndUpdate({ _id: req.params.id }, { $set: req.body })
+      .then(function(res) {
+        console.log(res);
+        res.json({ message: "Reward has been successfully updated" });
+      })
+      .catch(function(err) {
         res.json(err);
       });
   });
+
+  //Route to update quest
+  app.put("/api/quests/quest/:id", verifyToken, checkAuth, function(req, res) {
+    Reward.findByIdAndUpdate({ _id: req.params.id }, { $set: req.body })
+      .then(function(res) {
+        console.log(res);
+        res.json({ message: "Reward has been successfully updated" });
+      })
+      .catch(function(err) {
+        res.json(err);
+      });
+  });
+
+  //------------------------------
+  //--------DELETE ROUTES---------
+  //------------------------------
+
+  //route to delete reward - NOTE: Doesn't actaully delete - just removes from view
+  app.delete("/api/rewards/reward/:id", verifyToken, checkAuth, function(req, res) {
+    Reward.findByIdAndUpdate({ _id: req.params.id }, {$set: { show: false }})
+      .then(function(res) {
+        console.log(res);
+        res.json({ message: "Reward has been successfully updated" });
+      })
+      .catch(function(err) {
+        res.json(err);
+      });
+  });
+
+    //route to delete quest - NOTE: Doesn't actaully delete - just removes from view
+    app.delete("/api/quests/quest/:id", verifyToken, checkAuth, function(req, res) {
+        Reward.findByIdAndUpdate({ _id: req.params.id }, {$set: { show: false }})
+          .then(function(res) {
+            console.log(res);
+            res.json({ message: "Reward has been successfully updated" });
+          })
+          .catch(function(err) {
+            res.json(err);
+          });
+      });
 };
