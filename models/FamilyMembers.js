@@ -6,9 +6,8 @@ const FamilyMemberSchema = new Schema ({
         type: String,
         required: "name is required"
     },
-    doddlebugBucks: {
+    doodlebugBucks: {
         type: Number,
-        required: "password is required",
         default: 0
     },
     quests: [{
