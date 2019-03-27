@@ -15,7 +15,7 @@ const LoginForm = (props) => (
         <div className="flexCenter">
         <button className="loginButton" type="submit" onClick={props.login}>Login</button>
         </div><div className="flexCenter">
-        <p>Not yet Registered? Click <a href="/#" onClick={props.toggleLogin}>here</a> to register instead.</p><br/><br/><br/>
+        <p>Not yet Registered? Click <a href="/#" onClick={props.toggleLogin}>here</a> to register instead.</p>
         </div>
     </form>
 )
