@@ -1,30 +1,7 @@
 import React from 'react';
 import * as $ from "axios";
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
-// const getFilteredPosts = () => {
-//     $({
-//         url:`/api/gifs`,
-//         method: "GET"
-//         // headers: {'Authorization': 'Bearer ' + this.props.accessToken}
-//     }).then((posts) =>{
-//         this.setState({posts: posts.data});
-//     });
-// };
-
-// const RandomGif = () => {
-//         $.get({
-//             url:`/api/gifs`
-//             // headers: {'Authorization': 'Bearer ' + this.props.accessToken}
-//         }).then((gif) =>{
-//             console.log(gif)
-//             return (
-//                 <div>
-//                 {gif.data.gifName}
-//                 </div>
-//             )
-//         });
-// }
 
 class RandomGif extends React.Component {
 
@@ -36,11 +13,8 @@ class RandomGif extends React.Component {
         $({
             url: "/api/gifs",
             method: "GET"
-            // headers: {'Authorization': 'Bearer ' + this.props.accessToken}
         }).then((randomGif) => {
-            // console.log(randomGif)
             this.setState({ gifUrl: randomGif.data.embedURL })
-
         });
     };
 
