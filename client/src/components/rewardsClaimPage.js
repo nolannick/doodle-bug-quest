@@ -1,7 +1,7 @@
 import React from 'react';
-import * as $ from 'axios';
 import { Badge } from 'reactstrap';
 import RewardClaimModal from './rewardClaimModal';
+import {secure} from '../utility/util';
 
 class RewardClaimPage extends React.Component {
     state = {
@@ -9,8 +9,7 @@ class RewardClaimPage extends React.Component {
         members: [],
         memberId: '',
         rewardId: '',
-        doodlebugBucks: '',
-        token: localStorage.getItem('token')
+        doodlebugBucks: ''
     }
 
     onChange = e => {
@@ -19,10 +18,7 @@ class RewardClaimPage extends React.Component {
     }
 
     getFamilyMembers = (acctId) => {
-        const config = {
-            headers: {authorization: this.state.token}
-        };
-        $.get('/api/familyMembers/' + acctId, config)
+        secure.get('/api/familyMembers/' + acctId)
             .then((res) => {
                 // console.log(res);
                 this.setState({ members: res.data });
@@ -41,13 +37,9 @@ class RewardClaimPage extends React.Component {
             rewardId: this.state.rewardId,
             doodlebugBucks: claimBucks
         }
-        const config = {
-            headers: {authorization: this.state.token}
-        };
-        $.put('/api/familyMembers/familyMember/' + this.state.memberId, reward, config)
+        secure.put('/api/familyMembers/familyMember/' + this.state.memberId, reward)
         .then( (res) => {
             console.log(res);
-           
         });
     }
 

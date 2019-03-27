@@ -1,14 +1,13 @@
 import React from 'react';
-import * as $ from 'axios';
 import { Link } from "react-router-dom";
 import { Container } from 'reactstrap';
 import RewardModal from './rewardModal';
 import RewardsView from './rewardsView';
+import {secure} from '../utility/util';
 
 class Reward extends React.Component {
     state = {
         acctId: localStorage.getItem('acct_id'),
-        token: localStorage.getItem('token'),
         title: '',
         description: '',
         rewardvalue: '',
@@ -22,10 +21,7 @@ class Reward extends React.Component {
     }
 
     getRewards = acctId => {
-        const config = {
-            headers: {authorization: this.state.token}
-        };
-        $.get('/api/rewards/' + acctId, config)
+        secure.get('/api/rewards/' + acctId)
         .then( (res) => {
             // console.log(res);
             this.setState({ rewards: res.data});
@@ -39,10 +35,6 @@ class Reward extends React.Component {
     addRewards = e => {
         e.preventDefault();
         const acctId = this.state.acctId;
-        // console.log(acctId);
-        // console.log(this.state.title);
-        // console.log(this.state.description);
-        // console.log(this.state.rewardvalue);
         const reward = {
             title: this.state.title,
             description: this.state.description,
@@ -50,10 +42,7 @@ class Reward extends React.Component {
             show: true,
             acctId: acctId
         }
-        const config = {
-            headers: {authorization: this.state.token}
-        };
-        $.post('/api/reward', reward, config)
+        secure.post('/api/reward', reward)
         .then( (res) => {
             this.getRewards(acctId);
             this.setState({ title: '', description: '', rewardvalue: ''});

@@ -23,7 +23,7 @@ class Family extends React.Component {
     getFamilyMembers = (acctId) => {
         secure.get('/api/familyMembers/' + acctId )
             .then((res) => {
-                console.log(res);
+                // console.log(res);
                 this.setState({ members: res.data });
             });
     }
