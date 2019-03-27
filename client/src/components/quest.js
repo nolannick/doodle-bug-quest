@@ -1,9 +1,9 @@
 import React from 'react';
-import * as $ from 'axios';
 import { Container } from 'reactstrap';
 import { Link } from "react-router-dom";
 import AddQuestModal from './addQuestModal';
 import QuestView from './questView';
+import {secure} from '../utility/util';
 
 
 class Quest extends React.Component {
@@ -12,8 +12,7 @@ class Quest extends React.Component {
         title: '',
         description: '',
         bucksvalue: '',
-        quests: [],
-        token: localStorage.getItem('token')
+        quests: []
     }
 
     handleChange = e => {
@@ -23,17 +22,13 @@ class Quest extends React.Component {
     }
 
     getQuests = acctId => {
-        const config = {
-            headers: {authorization: this.state.token}
-        };
-        $.get('/api/quests/' + acctId, config)
+        secure.get('/api/quests/' + acctId)
         .then( (res) => {
             this.setState({ quests: res.data});
         });
     }
 
     componentDidMount() {
-        // console.log(this.state.acctId);
         this.getQuests(this.state.acctId);
     }
 
@@ -47,10 +42,7 @@ class Quest extends React.Component {
             show: true,
             acctId: acctId
         }
-        const config = {
-            headers: {authorization: this.state.token}
-        };
-        $.post('/api/quests', newQuest, config)
+        secure.post('/api/quests', newQuest)
         .then( (res) => {
             // console.log(res);
             this.getQuests(acctId);
@@ -63,9 +55,10 @@ class Quest extends React.Component {
             <Container>
                 <nav>
                     <Link to={'/family'} >Family Members | </Link>
-                    <Link to={'/quest'} >Quests</Link>
+                    <Link to={'/quest'} >Quests | </Link>
+                    <Link to={'/reward'} >Rewards</Link>
                 </nav>
-                <AddQuestModal buttonLabel='Add Quests'
+                <AddQuestModal buttonLabel='Create Quests'
                     handleChange={this.handleChange}
                     addQuests={this.addQuests}
                     {...this.state}
