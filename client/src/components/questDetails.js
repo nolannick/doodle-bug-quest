@@ -1,7 +1,7 @@
 import React from 'react';
-import * as $ from 'axios';
 import { Badge } from 'reactstrap';
 import CompleteQuestModal from './completQuestModal';
+import {secure} from '../utility/util';
 
 class QuestDetails extends React.Component {
     state = {
@@ -9,8 +9,7 @@ class QuestDetails extends React.Component {
         members: [],
         memberId: '',
         questId: '',
-        doodlebugBucks: '',
-        token: localStorage.getItem('token')
+        doodlebugBucks: ''
     }
 
     onChange = e => {
@@ -19,10 +18,7 @@ class QuestDetails extends React.Component {
     }
 
     getFamilyMembers = (acctId) => {
-        const config = {
-            headers: {authorization: this.state.token}
-        };
-        $.get('/api/familyMembers/' + acctId, config)
+        secure.get('/api/familyMembers/' + acctId)
             .then((res) => {
                 // console.log(res);
                 this.setState({ members: res.data });
@@ -42,10 +38,7 @@ class QuestDetails extends React.Component {
             questId: this.state.questId,
             doodlebugBucks: this.state.doodlebugBucks
         }
-        const config = {
-            headers: {authorization: this.state.token}
-        };
-        $.put('/api/familyMembers/familyMember/' + this.state.memberId, newQuest, config)
+        secure.put('/api/familyMembers/familyMember/' + this.state.memberId, newQuest)
         .then( (res) => {
             console.log(res);
            
