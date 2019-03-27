@@ -197,9 +197,11 @@ h1{
       round; 
   }
 
-  /*
-  media queries
-  */
+  svg {
+    z-index: -1;
+  }
+
+  /*  media queries  */
   @media screen and (max-width: 375px) {
   .Bug {
     width: 300px;
