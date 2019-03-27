@@ -27,7 +27,7 @@ class Family extends React.Component {
         };
         $.get('/api/familyMembers/' + acctId, config )
             .then((res) => {
-                // console.log(res);
+                console.log(res);
                 this.setState({ members: res.data });
             });
     }
@@ -46,9 +46,12 @@ class Family extends React.Component {
             rewards: [],
             acctId: acctId
         }
-        $.post('/api/familyMembers', memberData)
+        const config = {
+            headers: {authorization: this.state.token}
+        };
+        $.post('/api/familyMembers', memberData, config)
             .then((res) => {
-                console.log(res);
+                // console.log(res);
                 this.getFamilyMembers(acctId);
                 this.setState({ memberName: ''});
             });

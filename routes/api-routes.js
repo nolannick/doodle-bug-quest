@@ -9,21 +9,25 @@ const Reward = require("../models/Reward");
 // import { token } from '../client/src/components/family';
 
 //verifies Token
-const verifyToken = function(req, res, next) {
-//   const bearerHeader = token;
-  const bearerHeader = req.headers.authorization;
-  // Check if bearer is undefined
-  if (typeof bearerHeader !== undefined) {
-    req.token = bearerHeader;
-    // Next middleware
-    next();
-  } else {
-    res.sendStatus(403);
-  }
+const verifyToken = function (req, res, next) {
+    //   const bearerHeader = token;
+    const bearerHeader = req.headers.authorization;
+    // Check if bearer is undefined
+    if (typeof bearerHeader !== undefined) {
+        req.token = bearerHeader;
+        // Next middleware
+        next();
+    } else {
+        res.sendStatus(403);
+    }
 };
 
 module.exports = function (app) {
-    //-------------routes to register/login-------------
+
+    //==================================================
+    //================  REGISTER/LOGIN  ================
+    //==================================================
+
 
     //route to register
     app.post("/api/users/registration", function (req, res) {
@@ -118,6 +122,11 @@ module.exports = function (app) {
             });
     });
 
+    //==================================================
+    //================  GET Routes  ====================
+    //==================================================
+
+
     //route to retrieve all family members for a single account
     app.get("/api/familyMembers/:id", verifyToken, checkAuth, function (req, res) {
         FamilyMember.find({ acctId: req.params.id })
@@ -132,7 +141,7 @@ module.exports = function (app) {
 
     //route to retrieve a single family member by Id
     app.get(
-        "/api/familyMembers/familyMember:id",
+        "/api/familyMembers/familyMember/:id",
         verifyToken,
         checkAuth,
         function (req, res) {
@@ -147,12 +156,9 @@ module.exports = function (app) {
         }
     );
 
-    //==================================================
-    //================  GET Routes  ===================
-    //==================================================
     //route to retrieve all quests for a single account
     app.get("/api/quests/:id", verifyToken, checkAuth, function (req, res) {
-        Quest.find({ acctId: req.params.id })
+        Quest.find({ acctId: req.params.id, show: true })
             .populate("acctId")
             .then(function (quests) {
                 res.json(quests);
@@ -186,10 +192,7 @@ module.exports = function (app) {
     });
 
     //route to retrieve individual reward by rewardId
-    app.get("/api/rewards/reward/:id", verifyToken, checkAuth, function (
-        req,
-        res
-    ) {
+    app.get("/api/rewards/reward/:id", verifyToken, checkAuth, function (req, res) {
         Reward.find({ _id: req.params.id })
             .then(function (reward) {
                 res.json(reward);
@@ -200,7 +203,7 @@ module.exports = function (app) {
     });
 
     //==================================================
-    //================  Post Routes  ===================
+    //================  POST Routes  ===================
     //==================================================
 
     //route to create family members
@@ -236,44 +239,42 @@ module.exports = function (app) {
             });
     });
 
-    //------------------------------
-    //--------PUT ROUTES------------
-    //------------------------------
 
-  //Route to update family member
-  app.put(
-    "/api/familyMembers/familyMember/:id",
-    verifyToken,
-    checkAuth,
-    function(req, res) {
-      const val = req.body.doodlebugBucks;
-      const reward = req.body.rewardId;
-      const quest = req.body.questId;
-      FamilyMember.findByIdAndUpdate(
-        { _id: req.params.id },
-        {
-          $inc: { doodlebugBucks: val },
-          $push: { rewards: reward, quests: quest }
+    //==================================================
+    //================  PUT Routes  ===================
+    //================================================== 
+
+    //Route to update family member
+    app.put(
+        "/api/familyMembers/familyMember/:id",
+        verifyToken,
+        checkAuth,
+        function (req, res) {
+            const val = req.body.doodlebugBucks;
+            const reward = req.body.rewardId;
+            const quest = req.body.questId;
+            FamilyMember.findByIdAndUpdate(
+                { _id: req.params.id },
+                {
+                    $inc: { doodlebugBucks: val },
+                    $push: { rewards: reward, quests: quest }
+                }
+            )
+                .then(function (res) {
+                    console.log(res);
+                    res.json({ message: "User has been successfully updated" });
+                })
+                .catch(function (err) {
+                    res.json(err);
+                });
         }
-      )
-        .then(function(res) {
-          console.log(res);
-          res.json({ message: "User has been successfully updated" });
-        })
-        .catch(function(err) {
-          res.json(err);
-        });
-    }
     );
 
     //Route to update reward
-    app.put("/api/rewards/reward/:id", verifyToken, checkAuth, function (
-        req,
-        res
-    ) {
+    app.put("/api/rewards/reward/:id", verifyToken, checkAuth, function (req, res) {
         Reward.findByIdAndUpdate({ _id: req.params.id }, { $set: req.body })
             .then(function (res) {
-                console.log(res);
+                // console.log(res);
                 res.json({ message: "Reward has been successfully updated" });
             })
             .catch(function (err) {
@@ -285,7 +286,7 @@ module.exports = function (app) {
     app.put("/api/quests/quest/:id", verifyToken, checkAuth, function (req, res) {
         Reward.findByIdAndUpdate({ _id: req.params.id }, { $set: req.body })
             .then(function (res) {
-                console.log(res);
+                // console.log(res);
                 res.json({ message: "Reward has been successfully updated" });
             })
             .catch(function (err) {
@@ -293,9 +294,11 @@ module.exports = function (app) {
             });
     });
 
-    //------------------------------
-    //--------DELETE ROUTES---------
-    //------------------------------
+     
+    //==================================================
+    //=================  GIFS Routes  ==================
+    //================================================== 
+
 
     app.post("/api/gifs", function (req, res) {
         Gif.insertMany(req.body)
@@ -322,6 +325,12 @@ module.exports = function (app) {
                 });
         });
     });
+
+     
+    //==================================================
+    //=================  DELETE Routes  ===================
+    //================================================== 
+
     //route to delete reward - NOTE: Doesn't actaully delete - just removes from view
     app.delete("/api/rewards/reward/:id", verifyToken, checkAuth, function (
         req,
@@ -329,25 +338,8 @@ module.exports = function (app) {
     ) {
         Reward.findByIdAndUpdate({ _id: req.params.id }, { $set: { show: false } })
             .then(function (res) {
-                console.log(res);
+                // console.log(res);
                 res.json({ message: "Reward has been successfully updated" });
-            })
-            .catch(function (err) {
-                res.json(err);
-            });
-    });
-
-
-    //==================================================
-    //================  PUT Routes  ===================
-    //================================================== 
-
-    // route to add quest id to familly members' quests
-    app.put('/api/familyMembers/quest/:id', function (req, res) {
-        console.log('PUT API params: ', req.params.id);
-        FamilyMember.findOneAndUpdate({ _id: req.params.id }, { $push: { quests: req.body.id } }, { new: true })
-            .then(function (data) {
-                res.json(data);
             })
             .catch(function (err) {
                 res.json(err);
@@ -355,17 +347,17 @@ module.exports = function (app) {
     });
 
     //route to delete quest - NOTE: Doesn't actaully delete - just removes from view
-    app.delete("/api/quests/quest/:id", verifyToken, checkAuth, function (
-        req,
-        res
-    ) {
+    app.delete("/api/quests/quest/:id", verifyToken, checkAuth, function (req, res) {
         Reward.findByIdAndUpdate({ _id: req.params.id }, { $set: { show: false } })
             .then(function (res) {
-                console.log(res);
+                // console.log(res);
                 res.json({ message: "Reward has been successfully updated" });
             })
             .catch(function (err) {
                 res.json(err);
             });
     });
+
+
+
 };

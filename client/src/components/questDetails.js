@@ -19,7 +19,10 @@ class QuestDetails extends React.Component {
     }
 
     getFamilyMembers = (acctId) => {
-        $.get('/api/familyMembers/' + acctId)
+        const config = {
+            headers: {authorization: this.state.token}
+        };
+        $.get('/api/familyMembers/' + acctId, config)
             .then((res) => {
                 // console.log(res);
                 this.setState({ members: res.data });
@@ -31,30 +34,17 @@ class QuestDetails extends React.Component {
         this.setState({ questId: this.props.questKey, doodlebugBucks: this.props.questbucks});
     }
 
-
-
     completeQuest = e => {
         e.preventDefault();
         console.log(this.state.questId);
         console.log(this.state.doodlebugBucks);
-        // const quest = {
-        //     id: this.state.questId
-        // }
-        // $.put('/api/familyMembers/quest/' + this.state.memberId, quest)
-        // .then( (res) => {
-        //     console.log(res);
-        //     const quests = res.data.quests;
-        //     console.log(quests);
-           
-        // });
-        
         const newQuest = {
             questId: this.state.questId,
             doodlebugBucks: this.state.doodlebugBucks
         }
         const config = {
-            headers: this.state.token
-        }
+            headers: {authorization: this.state.token}
+        };
         $.put('/api/familyMembers/familyMember/' + this.state.memberId, newQuest, config)
         .then( (res) => {
             console.log(res);
@@ -71,11 +61,10 @@ class QuestDetails extends React.Component {
                     onChange={this.onChange}
                     completeQuest={this.completeQuest}
                 />
-                <p>{this.props.description}, Quest bucks:{' '}<Badge color="info">{this.props.questbucks}</Badge></p>
+                <p>{this.props.description}, Quest bucks:{' '}<Badge color="info" size='lg'>{this.props.questbucks}</Badge></p>
             </div>
         )
     }
 }
-
 
 export default QuestDetails;
