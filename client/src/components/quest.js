@@ -12,7 +12,8 @@ class Quest extends React.Component {
         title: '',
         description: '',
         bucksvalue: '',
-        quests: []
+        quests: [],
+        token: localStorage.getItem('token')
     }
 
     handleChange = e => {
@@ -22,7 +23,10 @@ class Quest extends React.Component {
     }
 
     getQuests = acctId => {
-        $.get('/api/quests/' + acctId)
+        const config = {
+            headers: {authorization: this.state.token}
+        };
+        $.get('/api/quests/' + acctId, config)
         .then( (res) => {
             this.setState({ quests: res.data});
         });
@@ -43,7 +47,10 @@ class Quest extends React.Component {
             show: true,
             acctId: acctId
         }
-        $.post('/api/quests', newQuest)
+        const config = {
+            headers: {authorization: this.state.token}
+        };
+        $.post('/api/quests', newQuest, config)
         .then( (res) => {
             // console.log(res);
             this.getQuests(acctId);
