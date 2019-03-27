@@ -39,5 +39,76 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    <svg height="600" width="500" id="doodle" display="">  
+      <defs
+       id="defs166">
+       <filter
+         y="-5"
+         x="-5"
+         filterUnits="userSpaceOnUse"
+         id="filter">
+        <feTurbulence
+           result="result1"
+           id="feTurbulence202"
+           type="fractalNoise"
+           numOctaves="3"
+           baseFrequency="110.2" />
+        <feDisplacementMap
+           id="feDisplacementMap204"
+           in2="result1"
+           in="SourceGraphic"
+           xChannelSelector="R"
+           scale="8"
+           yChannelSelector="A" />
+      </filter>
+      <path id="mainhand" fill="none" d="m 90 190 l -60 -10 l -10 -60 "/>
+      <path id="midhand" fill="none" d="m 90 250 l -60 -10 l -20 -60 "/>
+      <path id="leg" fill="none" d="m 110 340 l -30 55 l -10 60 "/>
+      <path id="antenna" fill="none" d=" m 160 75 q -35 10 -40 -40"/>
+    
+    </defs>
+    <g id="bug" style="filter:url(#filter)">
+    <path fill="none" d="
+    M 80 180
+    q 100 -100 201.5 0
+    m -1.5 -50
+    c -33 -89 -160 -100 -200 0
+    m -3.5 100
+    q 103.5 -100 207.5 0
+    m -2.7 50
+    c -51.3 -50 -151.3 -50 -202.3 0
+    m 1 50
+    c 35 75 160 76 200 0
+    m 0 -25
+    c -50 35 -160 35 -199 0
+    m -1 25
+    c -17 -30 -18 -170 0.2 -200.5
+    m 199.8 0.5
+    c 20 40 20 160 0 200
+    m -5 7
+    c 5 -38 26 -159 -18 -244
+    m -170 250
+    c -19 -103 -10 -188 12 -245.5
+      "/>
+      <circle cx="155" cy="95" r="4" fill="none"/>
+      <circle cx="200" cy="95" r="4" fill="none"/>
+      <path fill="none" d="M155 110 c 30 10 5 10 45 0"/>
+      <g id="limbs">
+      
+      <g id="limbsL">
+        <use xlink:href="#mainhand" class="limbs" id="mainL" transform="translate(360 0) scale(-1 1)"/>
+        <use xlink:href="#midhand" class="limbs" id="midL" transform="translate(360 0) scale(-1 1)"/>
+        <use xlink:href="#leg" class="limbs" id="legL" transform="translate(360 0) scale(-1 1)"/>
+        <use xlink:href="#antenna" class="limbs" id="antL" transform="translate(360 0) scale(-1 1)"/>
+      </g>
+      <g id="limbsR">
+      <use xlink:href="#mainhand" class="limbs" id="mainR"/>
+        <use xlink:href="#midhand" class="limbs" id="midR"/>
+        <use xlink:href="#leg" class="limbs" id="legR"/>
+        <use xlink:href="#antenna" class="limbs" id="antR"/>
+        </g>
+    </g>
+    </g>
+  </svg>
   </body>
 </html>

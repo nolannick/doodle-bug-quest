@@ -27,7 +27,7 @@ body {
     /* border-image: url(./assests//bugs5.jpg) 30% round; */
     background: linear-gradient(transparent, #60CFF6, #3AC655 );
     margin-bottom: 0px;
-    padding-bottom: 20px;
+    /* padding-bottom: 20px; */
     border: 5px solid black ;
     border-image: 
         url("./assests/thincrayonlineblu.svg")  /* source */
@@ -57,7 +57,7 @@ a {
     
     background-repeat: no-repeat;
     background-size: 50% auto;
-    height: 89vh;
+    height: 98.4vh; /* here's the white space! */
     background-Position: 'center';
     /* padding-left: 30px; */
     border-left: 20%;
@@ -77,14 +77,14 @@ h1{
   width: 88%;
   height: 30px;
   padding-left: 80px;
-  padding-bottom: 80px;
+  /* padding-bottom: 80px; */
   margin: 0 auto;
   display: block;
   /* border: 3px solid #b7b7b7; */
   font-size: 1.5em;
   -o-text-overflow: clip;
   text-overflow: clip;
-  margin-bottom: 10px;
+  /* margin-bottom: 10px; */
   color: darkslategrey;
   
 }
@@ -98,7 +98,7 @@ h1{
 .registrationForm {
   width: 320px;
   height: 55px;
-  padding: 10px 20px;
+  padding: 10px 20px 0px 20px;
   margin-right: 12px;
   /* border: 3px solid #b7b7b7; */
   /* font needs checking */
@@ -121,7 +121,7 @@ h1{
     color:darkslategrey;
     /* font-family:Arial; */
     font-size:23px;
-    padding:16px 27px;
+    padding:16px 27px 0px 27px;
     text-decoration:none;
     text-shadow:2px 1px 3px #696969;
     border: 4px solid #696969;
@@ -203,7 +203,7 @@ h1{
   @media screen and (max-width: 375px) {
   .Bug {
     width: 300px;
-    margin: 35px 10px;
+    margin: 35px 10px 0px 10px;
     font-family: "5yearsoldfont"
   }
   
@@ -216,7 +216,7 @@ h1{
 @media screen and (min-width: 1025px) {
   .Bug {
     width: 100%;
-    margin: auto;
+    margin: 0 auto;
     font-family: "5yearsoldfont";
     display: flex;
     align-items: center;
@@ -228,3 +228,52 @@ h1{
   }
 
 }
+
+/* DOODLE BUG */
+#doodle{
+  position: fixed;
+  bottom: 0;
+}
+
+@keyframes colorChange {
+  0%{stroke:#ff0000}
+  25%{stroke:#00ff00}
+  75%{stroke: #0000ff}
+  100%{stroke: #ff0000}
+}
+
+@keyframes wave {
+0%{
+  transform: rotate(0deg);
+  transform-origin: 90px 190px;
+  }
+50%{
+  transform: rotate(60deg);
+  transform-origin: 90px 190px;
+  }
+100%{
+  transform: rotate(-25deg);
+  transform-origin: 90px 190px;
+  }
+}
+
+@keyframes wiggle {
+0%{transform: translate(0px, 580px)}
+20%{transform: translate(100px, 400px)}
+70%{transform: translate(100px, 400px)}
+100%{transform: translate(0px, 580px)}
+}
+
+#mainR {
+  width:200px;
+  height:200px;
+  animation: wave 4s cubic-bezier(.49,.05,.32,1.04) infinite alternate
+}
+
+#bug {
+  width:200px;
+  height:200px;
+  stroke: #ff00ff;
+  animation: wiggle 6s ease infinite alternate
+}
+
