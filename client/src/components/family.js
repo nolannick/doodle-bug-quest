@@ -23,7 +23,7 @@ class Family extends React.Component {
     getFamilyMembers = (acctId) => {
         secure.get('/api/familyMembers/' + acctId )
             .then((res) => {
-                console.log(res);
+                // console.log(res);
                 this.setState({ members: res.data });
             });
     }
@@ -55,7 +55,8 @@ class Family extends React.Component {
             <Container>
                 <nav>
                     <Link to={'/family'} >Family Members | </Link>
-                    <Link to={'/quest'} >Quests</Link>
+                    <Link to={'/quest'} >Quests | </Link>
+                    <Link to={'/reward'} >Rewards</Link>
                 </nav>
                 <AddMemberModal buttonLabel='Add Members'
                     handleChange={this.handleChange}
