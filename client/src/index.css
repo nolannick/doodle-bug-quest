@@ -77,7 +77,8 @@ h1{
   padding-top: 20%;
   display: inline-block;
   font-weight: bold;
-  font-size: 25px;
+  font-size: 20px;
+  text-decoration-color: #34495E;
   color: #34495E;
   text-decoration-line: none;
 
