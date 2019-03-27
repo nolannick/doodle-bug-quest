@@ -12,9 +12,11 @@ const LoginForm = (props) => (
                 <input className="inputField" name="password" type="password" placeholder="Enter Password" onChange={props.changeHandler}></input>
             </div>
         </div>
-        <br/>
+        <div className="flexCenter">
         <button className="loginButton" type="submit" onClick={props.login}>Login</button>
+        </div><div className="flexCenter">
         <p>Not yet Registered? Click <a href="/#" onClick={props.toggleLogin}>here</a> to register instead.</p><br/><br/><br/>
+        </div>
     </form>
 )
 
