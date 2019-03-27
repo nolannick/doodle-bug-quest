@@ -1,9 +1,9 @@
 import React from 'react';
-import * as $ from "axios";
 import { Container } from 'reactstrap';
 import { Link } from "react-router-dom";
 import FamilyView from './familyView';
 import AddMemberModal from './addMemberModal';
+import {secure} from '../utility/util';
 
 class Family extends React.Component {
 
@@ -11,8 +11,7 @@ class Family extends React.Component {
         acctId: localStorage.getItem('acct_id'),
         familyname: localStorage.getItem('familyName'),
         memberName: '',
-        members: [],
-        token: localStorage.getItem("token")
+        members: []
     }
 
     handleChange = e => {
@@ -22,12 +21,9 @@ class Family extends React.Component {
     }
 
     getFamilyMembers = (acctId) => {
-        const config = {
-            headers: {authorization: this.state.token}
-        };
-        $.get('/api/familyMembers/' + acctId, config )
+        secure.get('/api/familyMembers/' + acctId )
             .then((res) => {
-                console.log(res);
+                // console.log(res);
                 this.setState({ members: res.data });
             });
     }
@@ -45,11 +41,8 @@ class Family extends React.Component {
             quests: [],
             rewards: [],
             acctId: acctId
-        }
-        const config = {
-            headers: {authorization: this.state.token}
         };
-        $.post('/api/familyMembers', memberData, config)
+        secure.post('/api/familyMembers', memberData)
             .then((res) => {
                 // console.log(res);
                 this.getFamilyMembers(acctId);
@@ -63,7 +56,8 @@ class Family extends React.Component {
             <div className="info-child">
                 <nav>
                     <Link to={'/family'} >Family Members | </Link>
-                    <Link to={'/quest'} >Quests</Link>
+                    <Link to={'/quest'} >Quests | </Link>
+                    <Link to={'/reward'} >Rewards</Link>
                 </nav>
                 <AddMemberModal
                     buttonLabel='Add Members'

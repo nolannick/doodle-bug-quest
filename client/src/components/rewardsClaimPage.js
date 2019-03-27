@@ -1,16 +1,14 @@
 import React from 'react';
 import { Badge } from 'reactstrap';
-import CompleteQuestModal from './completQuestModal';
+import RewardClaimModal from './rewardClaimModal';
 import {secure} from '../utility/util';
-import Popup from 'reactjs-popup';
-import gifDisplay from './gifDisplay'
 
-class QuestDetails extends React.Component {
+class RewardClaimPage extends React.Component {
     state = {
         acctId: localStorage.getItem('acct_id'),
         members: [],
         memberId: '',
-        questId: '',
+        rewardId: '',
         doodlebugBucks: ''
     }
 
@@ -29,37 +27,35 @@ class QuestDetails extends React.Component {
 
     onClick = () => {
         this.getFamilyMembers(this.state.acctId);
-        this.setState({ questId: this.props.questKey, doodlebugBucks: this.props.questbucks});
+        this.setState({ rewardId: this.props.rewardKey, doodlebugBucks: this.props.rewardbucks});
     }
 
-    completeQuest = e => {
+    claimReward = e => {
         e.preventDefault();
-        console.log(this.state.questId);
-        console.log(this.state.doodlebugBucks);
-        const newQuest = {
-            questId: this.state.questId,
-            doodlebugBucks: this.state.doodlebugBucks
+        const claimBucks = -this.state.doodlebugBucks;
+        const reward = {
+            rewardId: this.state.rewardId,
+            doodlebugBucks: claimBucks
         }
-        secure.put('/api/familyMembers/familyMember/' + this.state.memberId, newQuest)
+        secure.put('/api/familyMembers/familyMember/' + this.state.memberId, reward)
         .then( (res) => {
             console.log(res);
-           
         });
     }
 
     render() {
         return (
             <div>
-                <CompleteQuestModal buttonLabel={this.props.title} 
+                <RewardClaimModal buttonLabel={this.props.title} 
                     members={this.state.members}
                     onClick={this.onClick}
                     onChange={this.onChange}
-                    completeQuest={this.completeQuest}
+                    claimReward={this.claimReward}
                 />
-                <p>{this.props.description}, Quest bucks:{' '}<Badge color="info" size='lg'>{this.props.questbucks}</Badge></p>
+                <p>{this.props.description}, Reward bucks:{' '}<Badge color="info" size='lg'>{this.props.rewardbucks}</Badge></p>
             </div>
         )
     }
 }
 
-export default QuestDetails;
+export default RewardClaimPage;
