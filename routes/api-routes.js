@@ -6,7 +6,6 @@ const checkAuth = require("../checkAuth");
 const FamilyMember = require("../models/FamilyMembers");
 const Quest = require("../models/Quest");
 const Reward = require("../models/Reward");
-// import { token } from '../client/src/components/family';
 
 //verifies Token
 const verifyToken = function(req, res, next) {
