@@ -55,9 +55,10 @@ class Quest extends React.Component {
             <Container>
                 <nav>
                     <Link to={'/family'} >Family Members | </Link>
-                    <Link to={'/quest'} >Quests</Link>
+                    <Link to={'/quest'} >Quests | </Link>
+                    <Link to={'/reward'} >Rewards</Link>
                 </nav>
-                <AddQuestModal buttonLabel='Add Quests'
+                <AddQuestModal buttonLabel='Create Quests'
                     handleChange={this.handleChange}
                     addQuests={this.addQuests}
                     {...this.state}
