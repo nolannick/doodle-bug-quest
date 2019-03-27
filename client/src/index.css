@@ -4,7 +4,11 @@ body {
   /*padding: 20;*/
   width: 100%;
   height: 100%;
-  /*border: 20px;*/
+  /*background-image: url('../src/rolypolyimage1.jpg');
+  background-repeat: no-repeat;
+  background-size: 50% auto;
+  height: 80vh;*/
+ /* border: 20px;*/
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
@@ -17,7 +21,7 @@ body {
     -o-border-image: url(bugs2.jpg) 30% round; /* Opera 11-12.1 */
     border-image: url(bugs5.jpg) 30% round;
  
-   /*border: 5px solid black ;
+   /*border: 5px solid #34495E ;
    
     border-image: 
         url("./thickbordercrayon2.svg")  /* source */
@@ -48,20 +52,36 @@ code {
     background-repeat: no-repeat;
     background-size: 50% auto;
     height: 80vh;
-    background-Position: 'center';
+    background-position: left top;
+   /* background-Position: 'center';*/
     padding-left: 30px;
     border-left: 20%;
-    
-
-    
+ 
 }
+
 
 h1{
   padding-top: 15px;
+  padding-bottom: 50px;
   text-align: center;
-  color: darkslategrey;
+  color: #34495E;
+  
+  /*color: //#5D6D7E//darkslategrey;*/
   
 }
+
+.info, .info-child {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding-top: 20%;
+  display: inline-block;
+  font-weight: bold;
+  font-size: 25px;
+  color: #34495E;
+  text-decoration-line: none;
+
+  }
 
 .registrationForm {
   width: 88%;
@@ -70,14 +90,14 @@ h1{
   padding-bottom: 80px;
   margin: 0 auto;
   display: block;
-  border: 3px solid #b7b7b7;
+  border: 3px solid #34495E;
   font-size: 1.5em;
   -webkit-border-radius: 36px;
   border-radius: 36px;
   -o-text-overflow: clip;
   text-overflow: clip;
   margin-bottom: 10px;
-  color: darkslategrey;
+  color: #34495E;
   
 }
 
@@ -91,19 +111,19 @@ h1{
   height: 55px;
   padding: 10px 20px;
   margin-right: 12px;
-  border: 3px solid #b7b7b7;
+  border: 3px solid #34495E;
   /* font needs checking */
   font-size: 1.5em;
   -webkit-border-radius: 36px;
   border-radius: 36px;
-  color: darkslategrey;
+  color: #34495E;
   -o-text-overflow: clip;
   text-overflow: clip;
   
 }
 
 .loginButton{
-  background-color: darkslategrey;
+  background-color:#34495E ;
     -moz-border-radius:15px;
     -webkit-border-radius:15px;
     border-radius:15px;
@@ -114,7 +134,9 @@ h1{
     font-size:23px;
     padding:16px 27px;
     text-decoration:none;
-    text-shadow:2px 2px 3px #696969;
+    text-shadow:2px 2px 3px #34495E;
+    border-color: black;
+    border: 3px solid black;
 }
 
 .loginForm{
@@ -124,25 +146,25 @@ h1{
   padding-bottom: 80px;
   margin: 0 auto;
   display: block;
-  border: 3px solid #b7b7b7;
+  border: 3px solid #34495E;
   font-size: 1.5em;
   -webkit-border-radius: 36px;
   border-radius: 36px;
   -o-text-overflow: clip;
   text-overflow: clip;
   margin-bottom: 10px;
-  color: darkslategrey;
+  color: #34495E;
 
   width: 320px;
   height: 55px;
   padding: 10px 20px;
   margin-right: 12px;
-  border: 3px solid #b7b7b7;
+  border: 3px solid #34495E;
   /* font needs checking */
   font-size: 1.5em;
   -webkit-border-radius: 36px;
   border-radius: 36px;
-  color: darkslategrey;
+  color: #34495E;
   -o-text-overflow: clip;
   text-overflow: clip;
  
@@ -153,3 +175,10 @@ h1{
     align-items: center;
     justify-content: flex-end;
   }
+
+  .inputField{
+    border-color: #34495E;
+    border: 2px solid #34495E;
+  }
+
+  
