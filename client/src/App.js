@@ -17,7 +17,7 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div >
-          <Header />
+          {/* <Header /> */}
           <Route exact path="/" component={Login} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/family" component={Family} />

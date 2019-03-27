@@ -2,29 +2,6 @@ import React from 'react';
 import * as $ from "axios";
 import { Link } from 'react-router-dom'
 
-// const getFilteredPosts = () => {
-//     $({
-//         url:`/api/gifs`,
-//         method: "GET"
-//         // headers: {'Authorization': 'Bearer ' + this.props.accessToken}
-//     }).then((posts) =>{
-//         this.setState({posts: posts.data});
-//     });
-// };
-
-// const RandomGif = () => {
-//         $.get({
-//             url:`/api/gifs`
-//             // headers: {'Authorization': 'Bearer ' + this.props.accessToken}
-//         }).then((gif) =>{
-//             console.log(gif)
-//             return (
-//                 <div>
-//                 {gif.data.gifName}
-//                 </div>
-//             )
-//         });
-// }
 
 class RandomGif extends React.Component {
 
@@ -54,17 +31,16 @@ class RandomGif extends React.Component {
         }
         const iFrameStyle = {
             width: '100%',
-            position: 'absolute',
-            frameBorder: '0',
+            position: 'absolute'
         }
         return (
             <div>
-                You did it! Good job Doodle Bugger!
+                <h2>You did it! Good job Doodle Bugger!</h2>
             <div style={divStyle}>
-                    <iframe title="success" src={this.state.gifUrl} style={iFrameStyle}></iframe>
+                    <iframe title="success" frameBorder='0' src={this.state.gifUrl} style={iFrameStyle}></iframe>
                 </div>
                 <Link to='/family'>
-                    <button className="gifDone">Back to Family</button>
+                    <button className="gifDone btn btn-success">Back to Family</button>
                 </Link>
             </div>
         )
