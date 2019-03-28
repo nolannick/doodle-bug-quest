@@ -1,14 +1,155 @@
 body {
-  margin: 0;
-  padding: 0;
+
+  margin: 0 px;
+  /*padding: 20;*/
+  width: 100%;
+  height: 100%;
+  /*border: 20px;*/
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /*border: 10px solid darkgray;*/
+    border: 10px solid transparent;
+    padding: 15px;
+    -webkit-border-image: url(bugs1.jpg) 30% round; /* Safari 3.1-5 */
+    -o-border-image: url(bugs2.jpg) 30% round; /* Opera 11-12.1 */
+    border-image: url(bugs5.jpg) 30% round;
+ 
+   /*border: 5px solid black ;
+   
+    border-image: 
+        url("./thickbordercrayon2.svg")  /* source */
+     /*   45 /                    /* slice */
+     /*  6px 46px 0px 46px /    /* width */
+     /*   1px 1px 1px 1px       /* outset */
+     /*   round;  
+
+}*/
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.Bug {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 10%;
+  display: inline-block;
+}
+
+.Bugs{
+  
+    background-image: /*linear-gradient(transparent, white 13%),*/ url('../src/rolypolyimage1.jpg');
+    background-repeat: no-repeat;
+    background-size: 50% auto;
+    height: 80vh;
+    background-Position: 'center';
+    padding-left: 30px;
+    border-left: 20%;
+    
+
+    
+}
+
+h1{
+  padding-top: 15px;
+  text-align: center;
+  color: darkslategrey;
+  
+}
+
+.registrationForm {
+  width: 88%;
+  height: 30px;
+  padding-left: 80px;
+  padding-bottom: 80px;
+  margin: 0 auto;
+  display: block;
+  border: 3px solid #b7b7b7;
+  font-size: 1.5em;
+  -webkit-border-radius: 36px;
+  border-radius: 36px;
+  -o-text-overflow: clip;
+  text-overflow: clip;
+  margin-bottom: 10px;
+  color: darkslategrey;
+  
+}
+
+.form-input {
+  position: relative;
+  display: inline-block;
+}
+
+.registrationForm {
+  width: 320px;
+  height: 55px;
+  padding: 10px 20px;
+  margin-right: 12px;
+  border: 3px solid #b7b7b7;
+  /* font needs checking */
+  font-size: 1.5em;
+  -webkit-border-radius: 36px;
+  border-radius: 36px;
+  color: darkslategrey;
+  -o-text-overflow: clip;
+  text-overflow: clip;
+  
+}
+
+.loginButton{
+  background-color: darkslategrey;
+    -moz-border-radius:15px;
+    -webkit-border-radius:15px;
+    border-radius:15px;
+    display:inline-block;
+    cursor:pointer;
+    color:#ffffff;
+    font-family:Arial;
+    font-size:23px;
+    padding:16px 27px;
+    text-decoration:none;
+    text-shadow:2px 2px 3px #696969;
+}
+
+.loginForm{
+  width: 88%;
+  height: 30px;
+  padding-left: 80px;
+  padding-bottom: 80px;
+  margin: 0 auto;
+  display: block;
+  border: 3px solid #b7b7b7;
+  font-size: 1.5em;
+  -webkit-border-radius: 36px;
+  border-radius: 36px;
+  -o-text-overflow: clip;
+  text-overflow: clip;
+  margin-bottom: 10px;
+  color: darkslategrey;
+
+  width: 320px;
+  height: 55px;
+  padding: 10px 20px;
+  margin-right: 12px;
+  border: 3px solid #b7b7b7;
+  /* font needs checking */
+  font-size: 1.5em;
+  -webkit-border-radius: 36px;
+  border-radius: 36px;
+  color: darkslategrey;
+  -o-text-overflow: clip;
+  text-overflow: clip;
+ 
+  }
+
+  .flexLeft {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }

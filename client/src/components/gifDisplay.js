@@ -1,6 +1,6 @@
 import React from 'react';
 import * as $ from "axios";
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
 
 class RandomGif extends React.Component {
@@ -13,11 +13,8 @@ class RandomGif extends React.Component {
         $({
             url: "/api/gifs",
             method: "GET"
-            // headers: {'Authorization': 'Bearer ' + this.props.accessToken}
         }).then((randomGif) => {
-            // console.log(randomGif)
             this.setState({ gifUrl: randomGif.data.embedURL })
-
         });
     };
 

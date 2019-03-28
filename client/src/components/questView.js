@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from 'reactstrap';
+import QuestDetails from './questDetails';
 
 const QuestView = props => (
     <div>
@@ -7,8 +7,12 @@ const QuestView = props => (
             <div>
                 {props.quests.map(quest => (
                     <div key={quest._id}>
-                        <p> <a href='#'>{quest.title}</a>{': '}{quest.description}{', doodle bucks:'}{quest.value}</p>
-                       
+                        <QuestDetails 
+                            questKey={quest._id}
+                            title={quest.title}
+                            description={quest.description}
+                            questbucks={quest.value}
+                        />
                     </div>
                 )
                 )}

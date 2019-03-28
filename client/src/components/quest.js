@@ -1,9 +1,9 @@
 import React from 'react';
-import * as $ from 'axios';
 import { Container } from 'reactstrap';
 import { Link } from "react-router-dom";
 import AddQuestModal from './addQuestModal';
 import QuestView from './questView';
+import {secure} from '../utility/util';
 
 
 class Quest extends React.Component {
@@ -22,14 +22,13 @@ class Quest extends React.Component {
     }
 
     getQuests = acctId => {
-        $.get('/api/quests/' + acctId)
+        secure.get('/api/quests/' + acctId)
         .then( (res) => {
             this.setState({ quests: res.data});
         });
     }
 
     componentDidMount() {
-        // console.log(this.state.acctId);
         this.getQuests(this.state.acctId);
     }
 
@@ -43,7 +42,7 @@ class Quest extends React.Component {
             show: true,
             acctId: acctId
         }
-        $.post('/api/quests', newQuest)
+        secure.post('/api/quests', newQuest)
         .then( (res) => {
             // console.log(res);
             this.getQuests(acctId);
@@ -56,9 +55,10 @@ class Quest extends React.Component {
             <Container>
                 <nav>
                     <Link to={'/family'} >Family Members | </Link>
-                    <Link to={'/quest'} >Quests</Link>
+                    <Link to={'/quest'} >Quests | </Link>
+                    <Link to={'/reward'} >Rewards</Link>
                 </nav>
-                <AddQuestModal buttonLabel='Add Quests'
+                <AddQuestModal buttonLabel='Create Quests'
                     handleChange={this.handleChange}
                     addQuests={this.addQuests}
                     {...this.state}

@@ -1,9 +1,9 @@
 import React from 'react';
-import * as $ from "axios";
-import { Container, Row } from 'reactstrap';
+import { Container } from 'reactstrap';
 import { Link } from "react-router-dom";
 import FamilyView from './familyView';
 import AddMemberModal from './addMemberModal';
+import {secure} from '../utility/util';
 
 class Family extends React.Component {
 
@@ -21,7 +21,7 @@ class Family extends React.Component {
     }
 
     getFamilyMembers = (acctId) => {
-        $.get('/api/familyMembers/' + acctId)
+        secure.get('/api/familyMembers/' + acctId )
             .then((res) => {
                 // console.log(res);
                 this.setState({ members: res.data });
@@ -41,10 +41,10 @@ class Family extends React.Component {
             quests: [],
             rewards: [],
             acctId: acctId
-        }
-        $.post('/api/familyMembers', memberData)
+        };
+        secure.post('/api/familyMembers', memberData)
             .then((res) => {
-                console.log(res);
+                // console.log(res);
                 this.getFamilyMembers(acctId);
                 this.setState({ memberName: ''});
             });
@@ -55,7 +55,8 @@ class Family extends React.Component {
             <Container>
                 <nav>
                     <Link to={'/family'} >Family Members | </Link>
-                    <Link to={'/quest'} >Quests</Link>
+                    <Link to={'/quest'} >Quests | </Link>
+                    <Link to={'/reward'} >Rewards</Link>
                 </nav>
                 <AddMemberModal buttonLabel='Add Members'
                     handleChange={this.handleChange}

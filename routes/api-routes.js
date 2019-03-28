@@ -5,20 +5,15 @@ const Gif = require("../models/Gifs");
 const checkAuth = require("../checkAuth");
 const FamilyMember = require("../models/FamilyMembers");
 const Quest = require("../models/Quest");
-const Reward = require('../models/Reward')
+const Reward = require("../models/Reward");
 
 //verifies Token
 const verifyToken = function (req, res, next) {
-    //Get auth header value
-    const bearerHeader = req.headers["authorization"];
+    //   const bearerHeader = token;
+    const bearerHeader = req.headers.authorization;
     // Check if bearer is undefined
     if (typeof bearerHeader !== undefined) {
-        // Split at the space
-        const bearer = bearerHeader.split(" ");
-        // Get token from array
-        const bearerToken = bearer[1];
-        // Set the token
-        req.token = bearerToken;
+        req.token = bearerHeader;
         // Next middleware
         next();
     } else {
@@ -27,7 +22,11 @@ const verifyToken = function (req, res, next) {
 };
 
 module.exports = function (app) {
-    //-------------routes to register/login-------------
+
+    //==================================================
+    //================  REGISTER/LOGIN  ================
+    //==================================================
+
 
     //route to register
     app.post("/api/users/registration", function (req, res) {
@@ -79,32 +78,36 @@ module.exports = function (app) {
     //route to retrieve a profile by userId. THIS IS AN EXAMPLE OF HOW WE SHOULD QUERY WTH TOKEN.
     //This needs to be replaced with a valid route once other models are created.
     app.get("/api/users/:userId", verifyToken, checkAuth, function (req, res) {
-        Account.findById(req.params.userId).then(function (user) {
-            res.json(user);
-        }).catch(function (error) {
-            res.json({ error: error });
-        });
+        Account.findById(req.params.userId)
+            .then(function (user) {
+                res.json(user);
+            })
+            .catch(function (error) {
+                res.json({ error: error });
+            });
     });
 
     //route to retrieve all users for dev purposes. THIS SHOULD NOT BE IN PRODUCTION
     app.get("/api/users", function (req, res) {
-        Account.find().then(function (allUsers) {
-            res.json(allUsers);
-        }).catch(function (error) {
-            res.jason({ error: error });
-            //-------------Data Retrieval Routes.  -------------------
-            //route to retrieve a profile by userId. THIS IS AN EXAMPLE OF HOW WE SHOULD QUERY WTH TOKEN.
-            //This needs to be replaced with a valid route once other models are created.
-            app.get("/api/account/:Id", verifyToken, checkAuth, function (req, res) {
-                Account.findById(req.params.userId)
-                    .then(function (user) {
-                        res.json(user);
-                    })
-                    .catch(function (error) {
-                        res.json({ error: error });
-                    });
+        Account.find()
+            .then(function (allUsers) {
+                res.json(allUsers);
+            })
+            .catch(function (error) {
+                res.jason({ error: error });
+                //-------------Data Retrieval Routes.  -------------------
+                //route to retrieve a profile by userId. THIS IS AN EXAMPLE OF HOW WE SHOULD QUERY WTH TOKEN.
+                //This needs to be replaced with a valid route once other models are created.
+                app.get("/api/account/:Id", verifyToken, checkAuth, function (req, res) {
+                    Account.findById(req.params.userId)
+                        .then(function (user) {
+                            res.json(user);
+                        })
+                        .catch(function (error) {
+                            res.json({ error: error });
+                        });
+                });
             });
-        });
     });
 
     //route to retrieve all users for dev purposes. THIS SHOULD NOT BE IN PRODUCTION
@@ -117,6 +120,11 @@ module.exports = function (app) {
                 res.jason({ error: error });
             });
     });
+
+    //==================================================
+    //================  GET Routes  ====================
+    //==================================================
+
 
     //route to retrieve all family members for a single account
     app.get("/api/familyMembers/:id", verifyToken, checkAuth, function (req, res) {
@@ -131,20 +139,25 @@ module.exports = function (app) {
     });
 
     //route to retrieve a single family member by Id
-    app.get("/api/familyMembers/familyMember:id", verifyToken, checkAuth, function (req, res) {
-        FamilyMember.find({ _Id: req.params.id })
-            .populate("acctId")
-            .then(function (member) {
-                res.json(member);
-            })
-            .catch(function (error) {
-                res.jason({ error: error });
-            });
-    });
+    app.get(
+        "/api/familyMembers/familyMember/:id",
+        verifyToken,
+        checkAuth,
+        function (req, res) {
+            FamilyMember.find({ _id: req.params.id })
+                .populate("acctId")
+                .then(function (member) {
+                    res.json(member);
+                })
+                .catch(function (error) {
+                    res.jason({ error: error });
+                });
+        }
+    );
 
     //route to retrieve all quests for a single account
     app.get("/api/quests/:id", verifyToken, checkAuth, function (req, res) {
-        Quest.find({ acctId: req.params.id })
+        Quest.find({ acctId: req.params.id, show: true })
             .populate("acctId")
             .then(function (quests) {
                 res.json(quests);
@@ -156,7 +169,7 @@ module.exports = function (app) {
 
     //route to retrieve individual quest by questId
     app.get("/api/quests/quest/:id", verifyToken, checkAuth, function (req, res) {
-        Quest.find({ _Id: req.params.id })
+        Quest.find({ _id: req.params.id })
             .then(function (quest) {
                 res.json(quest);
             })
@@ -178,11 +191,8 @@ module.exports = function (app) {
     });
 
     //route to retrieve individual reward by rewardId
-    app.get("/api/rewards/reward/:id", verifyToken, checkAuth, function (
-        req,
-        res
-    ) {
-        Reward.find({ _Id: req.params.id })
+    app.get("/api/rewards/reward/:id", verifyToken, checkAuth, function (req, res) {
+        Reward.find({ _id: req.params.id })
             .then(function (reward) {
                 res.json(reward);
             })
@@ -192,7 +202,7 @@ module.exports = function (app) {
     });
 
     //==================================================
-    //================  Post Routes  ===================
+    //================  POST Routes  ===================
     //==================================================
 
     //route to create family members
@@ -228,9 +238,10 @@ module.exports = function (app) {
             });
     });
 
-    //------------------------------
-    //--------PUT ROUTES------------
-    //------------------------------
+
+    //==================================================
+    //================  PUT Routes  ===================
+    //================================================== 
 
     //Route to update family member
     app.put(
@@ -238,9 +249,15 @@ module.exports = function (app) {
         verifyToken,
         checkAuth,
         function (req, res) {
+            const val = req.body.doodlebugBucks;
+            const reward = req.body.rewardId;
+            const quest = req.body.questId;
             FamilyMember.findByIdAndUpdate(
                 { _id: req.params.id },
-                { $set: req.body }
+                {
+                    $inc: { doodlebugBucks: val },
+                    $push: { rewards: reward, quests: quest }
+                }
             )
                 .then(function (res) {
                     console.log(res);
@@ -256,7 +273,7 @@ module.exports = function (app) {
     app.put("/api/rewards/reward/:id", verifyToken, checkAuth, function (req, res) {
         Reward.findByIdAndUpdate({ _id: req.params.id }, { $set: req.body })
             .then(function (res) {
-                console.log(res);
+                // console.log(res);
                 res.json({ message: "Reward has been successfully updated" });
             })
             .catch(function (err) {
@@ -268,7 +285,7 @@ module.exports = function (app) {
     app.put("/api/quests/quest/:id", verifyToken, checkAuth, function (req, res) {
         Reward.findByIdAndUpdate({ _id: req.params.id }, { $set: req.body })
             .then(function (res) {
-                console.log(res);
+                // console.log(res);
                 res.json({ message: "Reward has been successfully updated" });
             })
             .catch(function (err) {
@@ -276,39 +293,51 @@ module.exports = function (app) {
             });
     });
 
-    //------------------------------
-    //--------DELETE ROUTES---------
-    //------------------------------
+     
+    //==================================================
+    //=================  GIFS Routes  ==================
+    //================================================== 
+
 
     app.post("/api/gifs", function (req, res) {
-        Gif.insertMany(req.body).then(function (newGif) {
-            res.json(newGif);
-        }).catch(function (error) {
-            res.json({ error: error });
-        });
-    })
-
+        Gif.insertMany(req.body)
+            .then(function (newGif) {
+                res.json(newGif);
+            })
+            .catch(function (error) {
+                res.json({ error: error });
+            });
+    });
 
     //Returns 1 random Gif document
     app.get("/api/gifs", function (req, res) {
         Gif.count().exec(function (err, count) {
-
             // Get a random entry
-            var random = Math.floor(Math.random() * count)
+            var random = Math.floor(Math.random() * count);
 
             // Again query all gifs but only fetch one offset by our random #
-            Gif.findOne().skip(random).exec(
-                function (err, result) {
+            Gif.findOne()
+                .skip(random)
+                .exec(function (err, result) {
                     // Tada! random gif
-                    res.json(result)
-                })
-        })
+                    res.json(result);
+                });
+        });
     });
+
+     
+    //==================================================
+    //=================  DELETE Routes  ===================
+    //================================================== 
+
     //route to delete reward - NOTE: Doesn't actaully delete - just removes from view
-    app.delete("/api/rewards/reward/:id", verifyToken, checkAuth, function (req, res) {
+    app.delete("/api/rewards/reward/:id", verifyToken, checkAuth, function (
+        req,
+        res
+    ) {
         Reward.findByIdAndUpdate({ _id: req.params.id }, { $set: { show: false } })
             .then(function (res) {
-                console.log(res);
+                // console.log(res);
                 res.json({ message: "Reward has been successfully updated" });
             })
             .catch(function (err) {
@@ -320,11 +349,14 @@ module.exports = function (app) {
     app.delete("/api/quests/quest/:id", verifyToken, checkAuth, function (req, res) {
         Reward.findByIdAndUpdate({ _id: req.params.id }, { $set: { show: false } })
             .then(function (res) {
-                console.log(res);
+                // console.log(res);
                 res.json({ message: "Reward has been successfully updated" });
             })
             .catch(function (err) {
                 res.json(err);
             });
     });
+
+
+
 };
