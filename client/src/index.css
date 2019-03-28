@@ -143,13 +143,52 @@ nav > :nth-child(n) {
 
 nav > :nth-child(n):hover {
   border: 4px solid #696969;
-  text-shadow:2px 1px 3px #696969;
+  text-shadow:2px 1px 1px #0EFAF5;
   border-image: 
     url("./assests/thincrayonlinegreen.svg")  /* source */
     45 /                    /* slice */
     40px /    /* width */
     0px       /* outset */
     round;
+}
+
+.addCreateBtn {
+  border: 4px solid #696969;
+  border-image: 
+    url("./assests/thincrayonlineyellow.svg")  /* source */
+    45 /                    /* slice */
+    40px /    /* width */
+    2px       /* outset */
+    round
+  !important /* can't figure out where it's overwritten */
+}
+
+.Bug > .container > div > div:nth-child(3n+1) {
+  border: 4px solid #696969;
+  border-image: 
+    url("./assests/thincrayonlineorange.svg")  /* source */
+    45 /                    /* slice */
+    20px /    /* width */
+    0px 0px 0px 8px       /* outset */
+    round
+}
+.Bug > .container > div > div:nth-child(3n+2) {
+  border: 4px solid #696969;
+  border-image: 
+    url("./assests/thincrayonlinegreen.svg")  /* source */
+    45 /                    /* slice */
+    20px /    /* width */
+    0px 0px 0px 8px       /* outset */
+    round
+}
+.Bug > .container > div > div:nth-child(3n+3) {
+  border: 4px solid #696969;
+  border-image: 
+    url("./assests/thincrayonlinered.svg")  /* source */
+    45 /                    /* slice */
+    20px /    /* width */
+    0px 0px 0px 8px       /* outset */
+    round
 }
 
   /*  media queries  */

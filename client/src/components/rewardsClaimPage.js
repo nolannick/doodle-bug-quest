@@ -52,7 +52,8 @@ class RewardClaimPage extends React.Component {
                     onChange={this.onChange}
                     claimReward={this.claimReward}
                 />
-                <p>{this.props.description}, Reward bucks:{' '}<Badge color="info" size='lg'>{this.props.rewardbucks}</Badge></p>
+                <p>{this.props.description} </p>
+                <p>Reward bucks:{' '}<Badge color="info" size='lg'>{this.props.rewardbucks}</Badge></p>
             </div>
         )
     }
