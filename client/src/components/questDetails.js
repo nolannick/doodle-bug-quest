@@ -32,8 +32,6 @@ class QuestDetails extends React.Component {
 
     completeQuest = e => {
         e.preventDefault();
-        console.log(this.state.questId);
-        console.log(this.state.doodlebugBucks);
         const newQuest = {
             questId: this.state.questId,
             doodlebugBucks: this.state.doodlebugBucks

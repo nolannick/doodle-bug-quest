@@ -21,10 +21,12 @@ const RegistrationForm = (props) => (
                 <input className="inputField" name="familyName" placeholder="ex: Smith" onChange={props.handleChange} />
             </div>
         </div>
-        <br/>
+        
+        <div className="flexCenter">
         <p><button className="loginButton" onClick={props.register}>Register</button></p>
-        <p>Already Registered? Click <a href="/#" onClick={props.toggleLogin}>here</a> to login instead.</p><br/><br/><br/><br/><br/>
-
+        </div><div className="flexCenter">
+        <p>Already Registered? Click <a href="/#" onClick={props.toggleLogin}>here</a> to login instead.</p>
+        </div>
     </form>
 );
 

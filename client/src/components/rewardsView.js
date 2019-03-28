@@ -4,7 +4,7 @@ import React from 'react';
 import RewardClaimPage from './rewardsClaimPage';
 
 const QuestView = props => (
-    <div>
+    <div className="container">
         {props.rewards ? (
             <div>
                 {props.rewards.map(reward => (

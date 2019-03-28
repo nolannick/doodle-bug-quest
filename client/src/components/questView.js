@@ -2,7 +2,7 @@ import React from 'react';
 import QuestDetails from './questDetails';
 
 const QuestView = props => (
-    <div>
+    <div className="container">
         {props.quests ? (
             <div>
                 {props.quests.map(quest => (
