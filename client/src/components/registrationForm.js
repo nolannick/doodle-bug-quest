@@ -5,7 +5,7 @@ const RegistrationForm = (props) => (
         <div className="form-group">
         
             <div className="form-input">
-                <label className="inputLabel">Username: </label>
+                <label className="inputLabel">Email Address: </label>
                 <input className="inputField" name="username" placeholder="Enter Email" onChange={props.handleChange} />
             </div>
 
@@ -19,7 +19,7 @@ const RegistrationForm = (props) => (
             </div>
             <div className="form-input">
                 <label className="inputLabel">Family Name: </label>
-                <input className="inputField" name="familyName" placeholder="Enter Family Name" onChange={props.handleChange} />
+                <input className="inputField" name="familyName" placeholder="ex: Smith" onChange={props.handleChange} />
             </div>
         </div>
         
