@@ -2,8 +2,6 @@ import React from 'react';
 import { Badge } from 'reactstrap';
 import CompleteQuestModal from './completQuestModal';
 import {secure} from '../utility/util';
-import Popup from 'reactjs-popup';
-import gifDisplay from './gifDisplay'
 
 class QuestDetails extends React.Component {
     state = {
