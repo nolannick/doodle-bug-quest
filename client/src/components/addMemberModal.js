@@ -14,7 +14,7 @@ class AddMemberModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      modal: false
+      modal: true
     };
     this.toggle = this.toggle.bind(this);
   }
