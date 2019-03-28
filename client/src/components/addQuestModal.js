@@ -30,7 +30,7 @@ class AddMemberModal extends React.Component {
     return (
       <div>
         <Button color="outline-info" onClick={this.toggle}>{this.props.buttonLabel}
-        </Button><br></br>
+        </Button>
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
           <ModalHeader toggle={this.toggle}>Set a family quest...</ModalHeader>
           <ModalBody>

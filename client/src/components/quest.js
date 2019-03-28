@@ -52,17 +52,17 @@ class Quest extends React.Component {
 
     render() {
         return (
-            <Container>
+            <Container className="Bug">
                 <nav>
-                    <Link to={'/family'} >Family Members | </Link>
-                    <Link to={'/quest'} >Quests | </Link>
+                    <Link to={'/family'} >Family Members</Link>
+                    <Link to={'/quest'} >Quests</Link>
                     <Link to={'/reward'} >Rewards</Link>
                 </nav>
                 <AddQuestModal buttonLabel='Create Quests'
                     handleChange={this.handleChange}
                     addQuests={this.addQuests}
                     {...this.state}
-                /><br></br>
+                />
                 <QuestView 
                     quests={this.state.quests}
                 />

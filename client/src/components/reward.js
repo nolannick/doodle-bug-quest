@@ -53,17 +53,17 @@ class Reward extends React.Component {
 
     render() {
         return (
-            <Container>
+            <Container className="Bug">
                 <nav>
-                    <Link to={'/family'} >Family Members | </Link>
-                    <Link to={'/quest'} >Quests | </Link>
+                    <Link to={'/family'} >Family Members</Link>
+                    <Link to={'/quest'} >Quests</Link>
                     <Link to={'/reward'} >Rewards</Link>
                 </nav>
                 <RewardModal buttonLabel='Create Rewards'
                      handleChange={this.handleChange}
                      addRewards={this.addRewards}
                      {...this.state}
-                /><br></br>
+                />
                 <RewardsView 
                     rewards={this.state.rewards}
                 />

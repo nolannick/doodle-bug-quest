@@ -37,7 +37,6 @@ class CompleteQuestModal extends React.Component {
         >
           {this.props.buttonLabel}
         </Button>
-        <br />
         <Modal
           isOpen={this.state.modal}
           toggle={this.toggle}

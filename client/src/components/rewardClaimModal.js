@@ -29,7 +29,7 @@ class CompleteQuestModal extends React.Component {
         return (
             <div>
                 <Button color="link" onClick={this.toggle} onClickCapture={this.props.onClick}>{this.props.buttonLabel}
-                </Button><br></br>
+                </Button>
                 <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
                     <ModalHeader toggle={this.toggle}>Select a member to claim the reward: {this.props.buttonLabel}</ModalHeader>
                     <ModalBody>
