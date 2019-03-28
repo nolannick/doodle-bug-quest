@@ -34,7 +34,10 @@ body {
         45 /                    /* slice */
         30px /    /* width */
         1px       /* outset */
-        round;  
+        round; 
+        height: 100%;
+        padding: 10px 20px 0px 20px;
+        margin-right: 12px; 
 
 }
 
@@ -93,7 +96,7 @@ h1{
   
 .registrationForm {
   width: 88%;
-  height: 30px;
+  height: 100%;
   padding-left: 80px;
   /* padding-bottom: 80px; */
   margin: 0 auto;
@@ -114,8 +117,8 @@ h1{
 }
 
 .registrationForm {
-  width: 320px;
-  height: 55px;
+  /*width: 320px;
+  height: 100%;
   padding: 10px 20px 0px 20px;
   margin-right: 12px;
   /* border: 3px solid #b7b7b7; */
