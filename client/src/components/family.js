@@ -52,17 +52,17 @@ class Family extends React.Component {
 
     render() {
         return (
-            <Container>
+            <Container className="Bug">
                 <nav>
-                    <Link to={'/family'} >Family Members | </Link>
-                    <Link to={'/quest'} >Quests | </Link>
+                    <Link to={'/family'} >Family Members</Link>
+                    <Link to={'/quest'} >Quests</Link>
                     <Link to={'/reward'} >Rewards</Link>
                 </nav>
                 <AddMemberModal buttonLabel='Add Members'
                     handleChange={this.handleChange}
                     memberName={this.state.memberName}
                     addFamilyMembers={this.addFamilyMembers}
-                /><br></br>
+                />
                 <FamilyView
                     familyname={this.state.familyname}
                     members={this.state.members}
