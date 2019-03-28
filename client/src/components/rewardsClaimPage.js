@@ -17,8 +17,8 @@ class RewardClaimPage extends React.Component {
         this.setState({ memberId: e.target.value});
     }
 
-    getFamilyMembers = (acctId) => {
-        secure.get('/api/familyMembers/' + acctId)
+    getFamilyMembers = (acctId, doodlebugBucks) => {
+        secure.get('/api/familyMembers/eligible/'+ doodlebugBucks+'/' + acctId)
             .then((res) => {
                 // console.log(res);
                 this.setState({ members: res.data });
@@ -26,7 +26,7 @@ class RewardClaimPage extends React.Component {
     }
 
     onClick = () => {
-        this.getFamilyMembers(this.state.acctId);
+        this.getFamilyMembers(this.state.acctId, this.props.rewardbucks);
         this.setState({ rewardId: this.props.rewardKey, doodlebugBucks: this.props.rewardbucks});
     }
 

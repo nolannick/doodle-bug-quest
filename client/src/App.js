@@ -6,7 +6,6 @@ import Login from './components/login';
 import Family from './components/family';
 import Quest from './components/quest';
 import Reward from './components/reward';
-import AddReward from './components/addReward';
 
 class App extends Component {
   render() {
@@ -18,7 +17,6 @@ class App extends Component {
           <Route exact path="/family" component={Family} />
           <Route exact path="/quest" component={Quest} />
           <Route exact path="/reward" component={Reward} />
-          <Route exact path="/reward/add" component={AddReward} />
         </div>
       </BrowserRouter>
 
