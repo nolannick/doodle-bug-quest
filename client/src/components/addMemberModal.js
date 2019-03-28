@@ -14,7 +14,7 @@ class AddMemberModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      modal: false
+      modal: true
     };
     this.toggle = this.toggle.bind(this);
   }
@@ -28,7 +28,7 @@ class AddMemberModal extends React.Component {
   render() {
     return (
       <div>
-        <Button color="outline-info" onClick={this.toggle}>{this.props.buttonLabel}
+        <Button className="addCreateBtn" color="outline-info" onClick={this.toggle}>{this.props.buttonLabel}
         </Button>
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
           <ModalHeader toggle={this.toggle}>Add a family member...</ModalHeader>
