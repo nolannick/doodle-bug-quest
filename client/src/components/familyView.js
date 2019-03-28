@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Badge } from 'reactstrap';
 
 const FamilyView = props => (
-    <div>
+    <div className="container">
         <h5>{props.familyname}</h5>
         {props.members.map(member => (
             <div key={member._id}>
