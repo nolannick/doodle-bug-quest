@@ -39,7 +39,7 @@ class RewardClaimPage extends React.Component {
         }
         secure.put('/api/familyMembers/familyMember/' + this.state.memberId, reward)
         .then( (res) => {
-            console.log(res);
+            window.location.href = "/family";
         });
     }
 
