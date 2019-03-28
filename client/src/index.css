@@ -5,10 +5,7 @@ body {
   width: 100%;
   height: 100%;
   /*background-image: url('../src/rolypolyimage1.jpg');
-  background-repeat: no-repeat;
-  background-size: 50% auto;
-  height: 80vh;*/
- /* border: 20px;*/
+  /* border: 20px;*/
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
@@ -22,15 +19,7 @@ body {
     border-image: url(bugs5.jpg) 30% round;
  
    /*border: 5px solid #34495E ;
-   
-    border-image: 
-        url("./thickbordercrayon2.svg")  /* source */
-     /*   45 /                    /* slice */
-     /*  6px 46px 0px 46px /    /* width */
-     /*   1px 1px 1px 1px       /* outset */
-     /*   round;  
-
-}*/
+  */
 }
 
 code {
@@ -56,9 +45,19 @@ code {
    /* background-Position: 'center';*/
     padding-left: 30px;
     border-left: 20%;
+    border-width: 4px;
+  /*border-style: ridge;
+  border-radius: 4px;
+ /* width: 350px;
+  height: 250px;
+  padding: 5px;
+  float: left;
+  overflow: auto;
+
+    width: 100%;
+    height: auto;*/
  
 }
-
 
 h1{
   padding-top: 15px;
@@ -84,6 +83,7 @@ h1{
 
   }
 
+  
 .registrationForm {
   width: 88%;
   height: 30px;
@@ -181,5 +181,15 @@ h1{
     border-color: #34495E;
     border: 2px solid #34495E;
   }
-
   
+  @media screen and (min-width: 400px) {
+    body {
+      background-color: #34495E;
+    }
+  }
+  
+  @media screen and (min-width: 800px) {
+    body {
+      background-color: lavender;
+    }
+  }

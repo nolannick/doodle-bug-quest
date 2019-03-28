@@ -54,7 +54,7 @@ class Family extends React.Component {
         return (
             <Container className="info">
             <div className="info-child">
-                <nav>
+                <nav className="child">
                     <Link to={'/family'} >Family Members | </Link>
                     <Link to={'/quest'} >Quests | </Link>
                     <Link to={'/reward'} >Rewards</Link>
