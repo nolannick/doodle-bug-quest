@@ -11,15 +11,22 @@ const app = express();
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(express.static(path.join(__dirname, 'public')));
 
-
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, 'client/build')));
+}
 
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/doodlebugquestDB"
 mongoose.connect(MONGODB_URI)
 
 
 require('./routes/api-routes')(app);
+
+if (process.env.NODE_ENV === "production") {
+  app.get("*", function (req, res) {
+    res.sendFile(path.join(__dirname, 'client/build/index.html'));
+  })
+}
 
 
 app.listen(PORT, function() {

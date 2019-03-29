@@ -7,7 +7,7 @@ const FamilyView = props => (
         {props.members.map(member => (
             <div key={member._id}>
                 <p><Button color='link'>{member.name}{' '}</Button>
-                Doodle Bucks:{' '}<Badge color="info" size='lg'>{member.doodlebugBucks}</Badge></p>
+                Doodle Bucks:{' '}<Badge color="info" size='xxlg'>{member.doodlebugBucks}</Badge></p>
             </div>
         )
         )}
