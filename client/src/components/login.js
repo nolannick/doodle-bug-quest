@@ -12,8 +12,13 @@ class Login extends React.Component {
     password: "",
     password2: "",
     toRegister: false,
-    alert: ""
+    alert: "",
+    loggedIn:false
   };
+
+  isLoggedIn (){
+    return this.state.loggedIn;
+  }
 
   validateRegistration () {
     let valid = true;
@@ -54,7 +59,8 @@ class Login extends React.Component {
             acct_id: response.data.verifiedUser.acct_id,
             familyName: response.data.verifiedUser.famName,
             username: "",
-            password: ""
+            password: "",
+            isLoggedIn: true
           });
           localStorage.setItem("token", response.data.token);
           localStorage.setItem("acct_id", response.data.verifiedUser.acct_id);
