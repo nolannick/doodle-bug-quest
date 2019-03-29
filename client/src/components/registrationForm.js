@@ -3,6 +3,7 @@ import React from 'react';
 const RegistrationForm = (props) => (
     <form className="registrationForm">
         <div className="form-group">
+        
             <div className="form-input">
                 <label className="inputLabel">Email Address: </label>
                 <input className="inputField" name="username" placeholder="Enter Email" onChange={props.handleChange} />

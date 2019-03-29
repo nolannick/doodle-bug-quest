@@ -2,6 +2,7 @@ import React from 'react';
 import { Badge } from 'reactstrap';
 import CompleteQuestModal from './completQuestModal';
 import {secure} from '../utility/util';
+import Popup from 'reactjs-popup';
 
 class QuestDetails extends React.Component {
     state = {
@@ -43,6 +44,14 @@ class QuestDetails extends React.Component {
         });
     }
 
+    onRemoveClick = () => {
+        const questKey = this.props.questKey;
+        secure.delete('/api/quests/quest/' + questKey)
+            .then((res) => {
+                window.location.href = "/quest";
+            });
+    }
+
     render() {
         return (
             <div>
@@ -52,6 +61,11 @@ class QuestDetails extends React.Component {
                     onChange={this.onChange}
                     completeQuest={this.completeQuest}
                 />
+                <Popup trigger={<button className='btn btn-link'>Remove</button>} position="right center">
+                    <div>Are you sure you want to remove this quest?
+                        <button onClick={this.onRemoveClick}>Remove</button>
+                    </div>
+                </Popup>
                 <p>{this.props.description}, Quest bucks:{' '}<Badge color="info" size='lg'>{this.props.questbucks}</Badge></p>
             </div>
         )

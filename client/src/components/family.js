@@ -62,7 +62,7 @@ class Family extends React.Component {
                     handleChange={this.handleChange}
                     memberName={this.state.memberName}
                     addFamilyMembers={this.addFamilyMembers}
-                />
+                /><br></br>
                 <FamilyView
                     familyname={this.state.familyname}
                     members={this.state.members}
