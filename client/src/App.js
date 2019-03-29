@@ -7,6 +7,7 @@ import Family from './components/family';
 import Quest from './components/quest';
 import Reward from './components/reward';
 import ErrorPage from './components/errorPage';
+import ProtectedRoute from './components/ProtectedRoute'
 
 class App extends Component {
   render() {
@@ -16,9 +17,9 @@ class App extends Component {
           <Header />
           <Switch>
           <Route exact path="/" component={Login} />
-          <Route exact path="/family" component={Family} />
-          <Route exact path="/quest" component={Quest} />
-          <Route exact path="/reward" component={Reward} />
+          <ProtectedRoute exact path="/family" component={Family} />
+          <ProtectedRoute exact path="/quest" component={Quest} />
+          <ProtectedRoute exact path="/reward" component={Reward} />
           <Route component={ ErrorPage}/>
           </Switch>
 
