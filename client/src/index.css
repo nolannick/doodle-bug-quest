@@ -11,6 +11,7 @@ body {
     background: linear-gradient(transparent, #60CFF6, #3AC655 );
     margin-bottom: 0px;
     font-family: "5yearsoldfont" !important;
+    overflow: hidden;
     border: 5px solid black ;
     border-image: 
         url("./assests/thincrayonlineblu.svg")  /* source */
@@ -19,25 +20,27 @@ body {
         1px       /* outset */
         round;  
 }
+
 .Bug {
   position: absolute;
   top: 12.5vh; /* don't change */
   right: 0.5%;
   padding-left: 8%;
   padding-right: 8%;
-  
 }
+
 a {
   color:  #FD0A0F !important
 }
+
 .Bugs{
     background-repeat: no-repeat;
     background-size: 50% auto;
     height: 98.4vh; /* don't change */
     background-Position: 'center';
     border-left: 20%;
-    
 }
+
 h1{
   padding-top: 15px;
   text-align: center;
@@ -137,6 +140,7 @@ nav > :nth-child(n):hover {
     round;
 }
 .addCreateBtn {
+  margin-bottom: 4px;
   border: 4px solid #696969;
   border-image: 
     url("./assests/thincrayonlineyellow.svg")  /* source */
@@ -146,6 +150,12 @@ nav > :nth-child(n):hover {
     round
   !important /* can't figure out where it's overwritten */
 }
+
+.Bug > .container {
+  max-height: 30.55rem;
+  overflow: auto;
+}
+
 .Bug > .container > div > div:nth-child(3n+1) {
   border: 4px solid #696969;
   border-image: 
