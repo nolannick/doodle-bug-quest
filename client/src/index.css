@@ -7,7 +7,6 @@
   url('./assests/5yearsoldfont.ttf')  format('truetype'), /* Safari, Android, iOS */
        url('./assests/5yearsoldfont.ttf#svgFontName') format('svg'); /* Legacy iOS */
 }
-
 body {
     background: linear-gradient(transparent, #60CFF6, #3AC655 );
     margin-bottom: 0px;
@@ -20,7 +19,6 @@ body {
         1px       /* outset */
         round;  
 }
-
 .Bug {
   position: absolute;
   top: 12.5vh; /* don't change */
@@ -29,11 +27,9 @@ body {
   padding-right: 8%;
   
 }
-
 a {
   color:  #FD0A0F !important
 }
-
 .Bugs{
     background-repeat: no-repeat;
     background-size: 50% auto;
@@ -42,13 +38,11 @@ a {
     border-left: 20%;
     
 }
-
 h1{
   padding-top: 15px;
   text-align: center;
   color: darkslategrey;  
 }
-
 .registrationForms {
   width: 88%;
   height: 30px;
@@ -60,19 +54,16 @@ h1{
   text-overflow: clip;
   color: darkslategrey;
 }
-
 .form-input {
   position: relative;
   display: inline-block;
   margin: 0px 3px;
 }
-
 .registrationForm {
   padding: 6px 10px 0px 10px;
   font-size: 1.5em;
   color: darkslategrey;
 }
-
 .loginButton{
   background-color: #FEFAF5;
   display:inline-block;
@@ -91,25 +82,21 @@ h1{
     round; 
   
 }
-
 .loginForm{
   padding: 10px 10px 0px 10px;
   font-size: 1.5em;
   color: darkslategrey;
 }
-
 .flexLeft {
   display: flex;
   align-items: center;
   justify-content: flex-end ;
 }
-
 .flexCenter {
   display: flex;
   align-items: center;
   justify-content: center ;
 }
-
 .inputField {
   background-color: #FEFAF5;
   margin-left: 4px;
@@ -122,11 +109,9 @@ h1{
     6px       /* outset */
     round; 
   }
-
 svg {
   z-index: -1;
 }
-
 nav {
   text-align: center;
   border: 4px solid #696969;
@@ -141,7 +126,6 @@ nav {
 nav > :nth-child(n) {
   padding: 0px 10px 0px 10px
 }
-
 nav > :nth-child(n):hover {
   border: 4px solid #696969;
   text-shadow:2px 1px 1px #0EFAF5;
@@ -152,7 +136,6 @@ nav > :nth-child(n):hover {
     0px       /* outset */
     round;
 }
-
 .addCreateBtn {
   border: 4px solid #696969;
   border-image: 
@@ -163,7 +146,6 @@ nav > :nth-child(n):hover {
     round
   !important /* can't figure out where it's overwritten */
 }
-
 .Bug > .container > div > div:nth-child(3n+1) {
   border: 4px solid #696969;
   border-image: 
@@ -191,7 +173,6 @@ nav > :nth-child(n):hover {
     0px 0px 0px 8px       /* outset */
     round
 }
-
 .Bug > div > div:nth-child(3n+4) > p {
   border: 4px solid #696969;
   border-image: 
@@ -219,7 +200,6 @@ nav > :nth-child(n):hover {
     0px 0px 0px 8px       /* outset */
     round
 }
-
 .modal-content {
   background-image: linear-gradient( white, transparent), url("./assests/images_use1.png");
 }
@@ -235,7 +215,6 @@ nav > :nth-child(n):hover {
     width: 200px;
   }
 }
-
 @media screen and (min-width: 1025px) {
   .Bug {
     width: 100%;
@@ -245,25 +224,21 @@ nav > :nth-child(n):hover {
     align-items: center;
     justify-content: center ;
   }
-
   .inputField {
     width: 70%;
   }
 }
-
 /* DOODLE BUG */
 #doodle{
   position: fixed;
   bottom: 0;
 }
-
 @keyframes colorChange {
   0%{stroke:#ff0000}
   25%{stroke:#00ff00}
   75%{stroke: #0000ff}
   100%{stroke: #ff0000}
 }
-
 @keyframes wave {
 0%{
   transform: rotate(0deg);
@@ -278,20 +253,17 @@ nav > :nth-child(n):hover {
   transform-origin: 90px 190px;
   }
 }
-
 @keyframes wiggle {
 0%{transform: translate(0px, 580px)}
 20%{transform: translate(100px, 400px)}
 70%{transform: translate(100px, 400px)}
 100%{transform: translate(0px, 580px)}
 }
-
 #mainR {
   width:200px;
   height:200px;
   animation: wave 4s cubic-bezier(.49,.05,.32,1.04) infinite alternate
 }
-
 #bug {
   width:200px;
   height:200px;
