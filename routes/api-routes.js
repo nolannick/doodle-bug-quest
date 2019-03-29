@@ -115,16 +115,16 @@ module.exports = function(app) {
       });
   });
 
-  //route to retrieve all users for dev purposes. THIS SHOULD NOT BE IN PRODUCTION
-  app.get("/api/users", function(req, res) {
-    Account.find()
-      .then(function(allUsers) {
-        res.json(allUsers);
-      })
-      .catch(function(error) {
-        res.jason({ error: error });
-      });
-  });
+//   //route to retrieve all users for dev purposes. THIS SHOULD NOT BE IN PRODUCTION
+//   app.get("/api/users", function(req, res) {
+//     Account.find()
+//       .then(function(allUsers) {
+//         res.json(allUsers);
+//       })
+//       .catch(function(error) {
+//         res.jason({ error: error });
+//       });
+//   });
 
   //==================================================
   //================  GET Routes  ====================
@@ -385,4 +385,26 @@ module.exports = function(app) {
         res.json(err);
       });
   });
+
+  //==================================================
+  //=================  Alexa Routes  ===================
+  //==================================================
+
+  app.get(
+    "/api/familyMembers",
+    function(req, res) {
+      FamilyMember.findById('5c9e27961eeeb33f657366cb')
+        .populate("acctId")
+        .then(function(member) {
+          res.json(member);
+        })
+        .catch(function(error) {
+          res.jason({ error: error });
+        });
+    }
+  );
+
 };
+
+
+
