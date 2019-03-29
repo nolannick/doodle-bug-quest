@@ -28,17 +28,16 @@ class RandomGif extends React.Component {
         }
         const iFrameStyle = {
             width: '100%',
-            position: 'absolute',
-            frameBorder: '0',
+            position: 'absolute'
         }
         return (
             <div>
-                You did it! Good job Doodle Bugger!
+                <h2>You did it! Good job Doodle Bugger!</h2>
             <div style={divStyle}>
-                    <iframe title="success" src={this.state.gifUrl} style={iFrameStyle}></iframe>
+                    <iframe title="success" frameBorder='0' src={this.state.gifUrl} style={iFrameStyle}></iframe>
                 </div>
                 <Link to='/family'>
-                    <button className="gifDone">Back to Family</button>
+                    <button className="gifDone btn btn-success">Back to Family</button>
                 </Link>
             </div>
         )
