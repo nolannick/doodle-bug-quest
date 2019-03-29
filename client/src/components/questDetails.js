@@ -52,7 +52,9 @@ class QuestDetails extends React.Component {
                     onChange={this.onChange}
                     completeQuest={this.completeQuest}
                 />
-                <p>{this.props.description}, Quest bucks:{' '}<Badge color="info" size='lg'>{this.props.questbucks}</Badge></p>
+                <p>{this.props.description}</p>
+                <p> Quest bucks:{' '}<Badge color="info" size='lg'>{this.props.questbucks}</Badge></p>
+
             </div>
         )
     }
