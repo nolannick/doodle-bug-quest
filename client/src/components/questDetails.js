@@ -2,8 +2,6 @@ import React from 'react';
 import { Badge } from 'reactstrap';
 import CompleteQuestModal from './completQuestModal';
 import {secure} from '../utility/util';
-import Popup from 'reactjs-popup';
-import gifDisplay from './gifDisplay'
 
 class QuestDetails extends React.Component {
     state = {
@@ -34,8 +32,6 @@ class QuestDetails extends React.Component {
 
     completeQuest = e => {
         e.preventDefault();
-        console.log(this.state.questId);
-        console.log(this.state.doodlebugBucks);
         const newQuest = {
             questId: this.state.questId,
             doodlebugBucks: this.state.doodlebugBucks

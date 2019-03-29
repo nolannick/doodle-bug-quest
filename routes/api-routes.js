@@ -28,21 +28,27 @@ module.exports = function(app) {
 
   //route to register
   app.post("/api/users/registration", function(req, res) {
-    const salt = hash.generateSalt();
-    const newPassword = hash.encrypt(req.body.password, salt);
-    const user = {
-      username: req.body.username,
-      password: newPassword,
-      familyname: req.body.familyname,
-      salt: salt
-    };
-    Account.create(user)
-      .then(function(newUser) {
-        res.json(newUser);
-      })
-      .catch(function(error) {
-        res.json({ error: error });
-      });
+    Account.find({ username: req.body.username }).then(user => {
+      if (!user[0]) {
+        const salt = hash.generateSalt();
+        const newPassword = hash.encrypt(req.body.password, salt);
+        const user = {
+          username: req.body.username,
+          password: newPassword,
+          familyname: req.body.familyname,
+          salt: salt
+        };
+        Account.create(user)
+          .then(function(newUser) {
+            res.json(newUser);
+          })
+          .catch(function(error) {
+            res.json({ error: error });
+          });
+      } else {
+        res.json({ error: "User already exists" });
+      }
+    });
   });
 
   //route to login
@@ -137,16 +143,24 @@ module.exports = function(app) {
   });
 
   //route to retrieve all family members based on doodblebugBucks count for an account
-  app.get("/api/familyMembers/eligible/:amount/:id", verifyToken, checkAuth, function(req, res) {
-    FamilyMember.find({ acctId: req.params.id, doodlebugBucks: {$gte: req.params.amount }})
-      .populate("acctId")
-      .then(function(members) {
-        res.json(members);
+  app.get(
+    "/api/familyMembers/eligible/:amount/:id",
+    verifyToken,
+    checkAuth,
+    function(req, res) {
+      FamilyMember.find({
+        acctId: req.params.id,
+        doodlebugBucks: { $gte: req.params.amount }
       })
-      .catch(function(error) {
-        res.jason({ error: error });
-      });
-  });
+        .populate("acctId")
+        .then(function(members) {
+          res.json(members);
+        })
+        .catch(function(error) {
+          res.jason({ error: error });
+        });
+    }
+  );
 
   //route to retrieve a single family member by Id
   app.get(

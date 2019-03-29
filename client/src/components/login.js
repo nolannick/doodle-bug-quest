@@ -2,20 +2,7 @@ import React from "react";
 import LoginForm from "./loginForm";
 import RegistrationForm from "./registrationForm";
 import * as $ from "axios";
-
-const Alert = props => {
-  return props.alert === "Invalid Password" ? (
-    <div className="alert alert-danger">
-      Password is incorrect. Please try again.
-    </div>
-  ) : props.alert === "Password Mismatch" ? (
-    <div className="alert alert-danger">
-      Passwords do not match. Please correct and try again.
-    </div>
-  ) : (
-    <div />
-  );
-};
+import Alert from './alert'
 
 class Login extends React.Component {
   state = {
@@ -27,6 +14,14 @@ class Login extends React.Component {
     toRegister: false,
     alert: ""
   };
+
+  validateRegistration () {
+    let valid = true;
+    if (!this.state.familyName || !this.state.username) {
+      valid = false;
+    }
+    return valid;
+  }
 
   changeHandler = e => {
     const { name, value } = e.target;
@@ -54,42 +49,58 @@ class Login extends React.Component {
   login = User => {
     localStorage.clear();
     $.post("/api/users/session", User).then(response => {
-        console.log(response);
-      this.setState({
-        acct_id: response.data.verifiedUser.acct_id,
-        familyName: response.data.verifiedUser.famName,
-        username: "",
-        password: ""
-      });
-      localStorage.setItem("token", response.data.token);
-      localStorage.setItem("acct_id", response.data.verifiedUser.acct_id);
-      localStorage.setItem("familyName", response.data.verifiedUser.famName);
-      window.location.href = "/family";
-    });
+        if (response.data.token) {
+          this.setState({
+            acct_id: response.data.verifiedUser.acct_id,
+            familyName: response.data.verifiedUser.famName,
+            username: "",
+            password: ""
+          });
+          localStorage.setItem("token", response.data.token);
+          localStorage.setItem("acct_id", response.data.verifiedUser.acct_id);
+          localStorage.setItem("familyName", response.data.verifiedUser.famName);
+          window.location.href = "/family";
+        } else {
+          this.setState({ alert: "Login Failed" })
+        };
+        })
   };
 
   register = e => {
     e.preventDefault();
-    const newUser = {
-      username: this.state.username,
-      password: this.state.password,
-      familyname: this.state.familyName
-    };
-    if (this.state.password === this.state.password2) {
-      $.post("/api/users/registration", newUser).then(response => {
-        this.login(newUser);
-      });
+    this.setState({alert: ""});
+    debugger;
+    const isValid = this.validateRegistration();
+    if (isValid) {
+      const newUser = {
+        username: this.state.username,
+        password: this.state.password,
+        familyname: this.state.familyName
+      };
+      if (this.state.password === this.state.password2) {
+        $.post("/api/users/registration", newUser).then(response => {
+          if (response.data.username) {
+            this.login(newUser);
+          } else if (response.data.error === 'User already exists') {
+            this.setState({ alert: "Existing User" });
+          } else {
+            this.setState({ alert: "Registration Failed" });
+          }
+        });
+      } else {
+        this.setState({
+          alert: "Password Mismatch"
+        });
+      }
     } else {
-      this.setState({
-        alert: "Password Mismatch"
-      });
-    }
+      this.setState({alert: 'Missing Info'})
+    };    
   };
 
   render() {
     return (
       <div className="Bug">
-        <Alert alert={this.state.alert} />
+        {this.state.alert && <Alert alert={this.state.alert} />}
         {this.state.toRegister ? (
           <RegistrationForm
             toggleLogin={this.toggleLogin}
