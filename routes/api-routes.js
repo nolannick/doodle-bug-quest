@@ -204,7 +204,7 @@ module.exports = function(app) {
 
   //route to retrieve all rewards for a single account
   app.get("/api/rewards/:id", verifyToken, checkAuth, function(req, res) {
-    Reward.find({ acctId: req.params.id })
+    Reward.find({ acctId: req.params.id, show: true })
       .populate("acctId")
       .then(function(rewards) {
         res.json(rewards);
@@ -376,7 +376,7 @@ module.exports = function(app) {
     req,
     res
   ) {
-    Reward.findByIdAndUpdate({ _id: req.params.id }, { $set: { show: false } })
+    Quest.findByIdAndUpdate({ _id: req.params.id }, { $set: { show: false } })
       .then(function(res) {
         // console.log(res);
         res.json({ message: "Reward has been successfully updated" });
