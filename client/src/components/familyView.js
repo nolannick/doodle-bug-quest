@@ -3,11 +3,11 @@ import { Button, Badge } from 'reactstrap';
 
 const FamilyView = props => (
     <div className="container">
-        <h5>{props.familyname}</h5>
+        <h4 className="famNameHeader">Family: {props.familyname}</h4>
         {props.members.map(member => (
-            <div key={member._id}>
-                <p><Button color='link'>{member.name}{' '}</Button>
-                Doodle Bucks:{' '}<Badge color="info" size='xxlg'>{member.doodlebugBucks}</Badge></p>
+            <div className="famRow" key={member._id}>
+                <div><Button color='link'>{member.name}{' '}</Button>
+                <div className="doodleBucksText">Doodle Bucks:{' '}<Badge color="info" size='lg' className="bucksBadge">{member.doodlebugBucks}</Badge></div></div>
             </div>
         )
         )}
