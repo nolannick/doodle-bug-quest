@@ -61,7 +61,7 @@ class RewardClaimPage extends React.Component {
                     onChange={this.onChange}
                     claimReward={this.claimReward}
                 />
-                <Popup trigger={<button className='btn btn-link remove'>Remove</button>} position="right center">
+                <Popup trigger={<button className='btn btn-link remove'>Remove</button>} position="left center">
                     <div>Are you sure you want to remove this reward?
                         <button onClick={this.onRemoveClick}>Remove</button>
                     </div>
