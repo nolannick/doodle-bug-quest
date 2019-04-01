@@ -64,7 +64,7 @@ module.exports = function(app) {
           jwt.sign(
             verifiedUser,
             process.env.JWT_KEY,
-            { expiresIn: "3h" },
+            { expiresIn: "30d" },
             function(err, token) {
               res.json({ verifiedUser, token });
             }
