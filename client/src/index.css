@@ -255,6 +255,7 @@ nav > :nth-child(n):hover {
 #doodle{
   position: fixed;
   bottom: 0;
+  display: none
 }
 @keyframes colorChange {
   0%{stroke:#ff0000}
