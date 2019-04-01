@@ -10,6 +10,17 @@ import ErrorPage from './components/errorPage';
 import ProtectedRoute from './components/ProtectedRoute'
 
 class App extends Component {
+//   onScroll () { // attempt to add avtice shadow onScroll// //(too much jQuery)//
+// window.scroll(function(){
+//   let scroll = window.scrollTop()
+//   const contain = document.getElementsByClassName("container")
+//   if (scroll > 0) {
+//     contain.addClass("active")
+//   } else {
+//     contain.removerClass('active')
+//   }
+// })
+// }
   render() {
     return (
       <BrowserRouter>

@@ -155,17 +155,19 @@ nav > :nth-child(n):hover {
 .Bug > .container {
   max-height: 30.55rem;
   overflow: auto;
+  padding-left: 6px
 }
 
-.Bug > .container > div > div:nth-child(3n+1) { /* not to family */
+.Bug > .container > div > div:nth-child(3n+1) {
   border: 4px solid #696969;
   border-image: 
-    url("./assests/thincrayonlinesky.svg")  /* source */
+    url("./assests/thincrayonlineorange.svg")  /* source */
     45 /                    /* slice */
     20px /    /* width */
     0px 0px 0px 8px       /* outset */
     round
 }
+
 .Bug > .container > div > div:nth-child(3n+2) {
   border: 4px solid #696969;
   border-image: 
@@ -175,6 +177,7 @@ nav > :nth-child(n):hover {
     0px 0px 0px 8px       /* outset */
     round
 }
+
 .Bug > .container > div > div:nth-child(3n+3) {
   border: 4px solid #696969;
   border-image: 
@@ -184,6 +187,11 @@ nav > :nth-child(n):hover {
     0px 0px 0px 8px       /* outset */
     round
 }
+
+.Bug > .container > .famRow > div:nth-child(3n+1) {
+  border: none
+}
+
 .Bug > .container > div:nth-child(3n+4) {
   border: 4px solid #696969;
   border-image: 
