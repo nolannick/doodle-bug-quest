@@ -37,7 +37,7 @@ class AddMemberModal extends React.Component {
             <Form>
               <FormGroup row>
                 <Col>
-                  <Input type="text" name="title" placeholder="Quest Title"
+                  <Input type="text" name="title" placeholder="Reward Title"
                     value={this.props.title}
                     onChange={this.props.handleChange}
                   />
@@ -59,7 +59,7 @@ class AddMemberModal extends React.Component {
                 </Col>
               </FormGroup>
               <FormGroup>
-                <Input type="textarea" name="description" placeholder="Quest Description"
+                <Input type="textarea" name="description" placeholder="Reward Description"
                   value={this.props.description}
                   onChange={this.props.handleChange}
                 />
