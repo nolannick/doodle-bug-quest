@@ -55,19 +55,20 @@ class QuestDetails extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="inLine">
                 <CompleteQuestModal buttonLabel={this.props.title} 
                     members={this.state.members}
                     onClick={this.onClick}
                     onChange={this.onChange}
                     completeQuest={this.completeQuest}
                 />
-                <Popup trigger={<button className='btn btn-link'>Remove</button>} position="right center">
+                <Popup trigger={<button className='btn btn-link remove'>Remove</button>} position="left center">
                     <div>Are you sure you want to remove this quest?
                         <button onClick={this.onRemoveClick}>Remove</button>
                     </div>
                 </Popup>
-                <p>{this.props.description}, Quest bucks:{' '}<Badge color="info" size='lg'>{this.props.questbucks}</Badge></p>
+                <p>{this.props.description}</p>
+                <p className="floatR"> Quest bucks:{' '}<Badge color="info" size='lg'>{this.props.questbucks}</Badge></p>
             </div>
         )
     }

@@ -1,0 +1,37 @@
+.famRow {
+    display:inline-block;
+    width: 100%;
+}
+
+.doodleBucksText {
+    float: right;
+    margin: 10px;
+    
+}
+
+.badge {
+    font-size: 150%;
+    float: right;
+    margin: 0px 8px 8px 0px
+  }
+
+  .btn-link {
+    font-size: 150%;
+    font-weight: bold;
+  }
+
+  .famNameHeader {
+      text-align: center;
+  }
+
+.inLine > div {
+    display: inline-block;
+}
+ .remove {
+     float: right;
+     font-size: 10px
+ }
+
+ .floatR {
+    text-align: right
+ }
