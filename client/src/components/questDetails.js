@@ -61,7 +61,7 @@ class QuestDetails extends React.Component {
                     onChange={this.onChange}
                     completeQuest={this.completeQuest}
                 />
-                <Popup trigger={<button className='btn btn-link remove'>Remove</button>} position="right center">
+                <Popup trigger={<button className='btn btn-link remove'>Remove</button>} position="left center">
                     <div>Are you sure you want to remove this quest?
                         <button onClick={this.onRemoveClick}>Remove</button>
                     </div>
