@@ -4,7 +4,7 @@
 }
 
 .doodleBucksText {
-    display: inline-block;
+    /* display: inline-block; */
     float: right;
     margin: 10px;
     
@@ -12,8 +12,9 @@
 
 .badge {
     font-size: 150%;
-    display: inline-block;
+    /* display: inline-block; */
     float: right;
+    margin: 0px 8px 8px 0px
   }
 
   .btn-link {
