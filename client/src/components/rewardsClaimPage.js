@@ -66,7 +66,7 @@ class RewardClaimPage extends React.Component {
                         <button onClick={this.onRemoveClick}>Remove</button>
                     </div>
                 </Popup>
-                <div>{this.props.description} </div>
+                <p>{this.props.description} </p>
                 <p className="floatR">Reward bucks:{' '}<Badge color="info" size='lg'>{this.props.rewardbucks}</Badge></p>
             </div>
         )
