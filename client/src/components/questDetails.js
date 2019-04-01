@@ -40,6 +40,7 @@ class QuestDetails extends React.Component {
         secure.put('/api/familyMembers/familyMember/' + this.state.memberId, newQuest)
         .then( (res) => {
             console.log(res);
+            setTimeout(function() {window.location.href = "/quest";}, 5000);
            
         });
     }
