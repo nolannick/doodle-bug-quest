@@ -54,20 +54,20 @@ class RewardClaimPage extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="inLine">
                 <RewardClaimModal buttonLabel={this.props.title}
                     members={this.state.members}
                     onClick={this.onClick}
                     onChange={this.onChange}
                     claimReward={this.claimReward}
                 />
-                <Popup trigger={<button className='btn btn-link'>Remove</button>} position="right center">
+                <Popup trigger={<button className='btn btn-link remove'>Remove</button>} position="right center">
                     <div>Are you sure you want to remove this reward?
                         <button onClick={this.onRemoveClick}>Remove</button>
                     </div>
                 </Popup>
-                <p>{this.props.description} </p>
-                <p>Reward bucks:{' '}<Badge color="info" size='lg'>{this.props.rewardbucks}</Badge></p>
+                <div>{this.props.description} </div>
+                <p className="floatR">Reward bucks:{' '}<Badge color="info" size='lg'>{this.props.rewardbucks}</Badge></p>
             </div>
         )
     }
