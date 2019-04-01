@@ -157,10 +157,10 @@ nav > :nth-child(n):hover {
   overflow: auto;
 }
 
-.Bug > .container > div > div:nth-child(3n+1) {
+.Bug > .container > div > div:nth-child(3n+1) { /* not to family */
   border: 4px solid #696969;
   border-image: 
-    url("./assests/thincrayonlineorange.svg")  /* source */
+    url("./assests/thincrayonlinesky.svg")  /* source */
     45 /                    /* slice */
     20px /    /* width */
     0px 0px 0px 8px       /* outset */
@@ -255,7 +255,7 @@ nav > :nth-child(n):hover {
 #doodle{
   position: fixed;
   bottom: 0;
-  display: none
+  /* display: none */
 }
 @keyframes colorChange {
   0%{stroke:#ff0000}
@@ -266,6 +266,7 @@ nav > :nth-child(n):hover {
 @keyframes wave {
 0%{
   transform: rotate(0deg);
+  /* transform: rotateZ(360deg); */
   transform-origin: 90px 190px;
   }
 50%{
@@ -273,16 +274,21 @@ nav > :nth-child(n):hover {
   transform-origin: 90px 190px;
   }
 100%{
-  transform: rotate(-25deg);
+  transform: rotate(-25deg, 0deg, 0deg); /* acceleration v2 */
   transform-origin: 90px 190px;
   }
 }
 @keyframes wiggle {
-0%{transform: translate(0px, 580px)}
-20%{transform: translate(100px, 400px)}
+0%{
+  transform: translate(0px, 580px)
+  }
+20%{transform: translate(100px, 400px)} /* , -1px acceleration v1 */
 70%{transform: translate(100px, 400px)}
-100%{transform: translate(0px, 580px)}
+100%{
+  transform: translate(0px, 580px) ;
+  }
 }
+
 #mainR {
   width:200px;
   height:200px;
