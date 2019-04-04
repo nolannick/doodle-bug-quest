@@ -45,7 +45,7 @@ class CompleteQuestModal extends React.Component {
                         </Form>
                     </ModalBody>
                     <ModalFooter>
-                        <Button color="info" size='sm' onClick={this.toggle} onClickCapture={this.props.claimReward}>Claim!</Button>{' '}
+                        <Button color="info" size='lg' block onClick={this.toggle} onClickCapture={this.props.claimReward}>Claim!</Button>{' '}
                         <Button color="secondary" size='sm' onClick={this.toggle}>Cancel</Button>
                     </ModalFooter>
                 </Modal>

@@ -88,32 +88,33 @@ module.exports = function(app) {
       })
       .catch(function(error) {
         res.json({ error: error });
+        window.location.href = "/";
       });
   });
 
   //route to retrieve all users for dev purposes. THIS SHOULD NOT BE IN PRODUCTION
-  app.get("/api/users", function(req, res) {
-    Account.find()
-      .then(function(allUsers) {
-        res.json(allUsers);
-      })
-      .catch(function(error) {
-        res.jason({ error: error });
+  // app.get("/api/users", function(req, res) {
+  //   Account.find()
+  //     .then(function(allUsers) {
+  //       res.json(allUsers);
+  //     })
+  //     .catch(function(error) {
+  //       res.jason({ error: error });
 
-        //-------------Data Retrieval Routes.  -------------------
-        //route to retrieve a profile by userId. THIS IS AN EXAMPLE OF HOW WE SHOULD QUERY WTH TOKEN.
-        //This needs to be replaced with a valid route once other models are created.
-        app.get("/api/account/:Id", verifyToken, checkAuth, function(req, res) {
-          Account.findById(req.params.userId)
-            .then(function(user) {
-              res.json(user);
-            })
-            .catch(function(error) {
-              res.json({ error: error });
-            });
-        });
-      });
-  });
+  //       //-------------Data Retrieval Routes.  -------------------
+  //       //route to retrieve a profile by userId. THIS IS AN EXAMPLE OF HOW WE SHOULD QUERY WTH TOKEN.
+  //       //This needs to be replaced with a valid route once other models are created.
+  //       app.get("/api/account/:Id", verifyToken, checkAuth, function(req, res) {
+  //         Account.findById(req.params.userId)
+  //           .then(function(user) {
+  //             res.json(user);
+  //           })
+  //           .catch(function(error) {
+  //             res.json({ error: error });
+  //           });
+  //       });
+  //     });
+  // });
 
 //   //route to retrieve all users for dev purposes. THIS SHOULD NOT BE IN PRODUCTION
 //   app.get("/api/users", function(req, res) {
@@ -139,6 +140,7 @@ module.exports = function(app) {
       })
       .catch(function(error) {
         res.jason({ error: error });
+        window.location.href = "/";
       });
   });
 
@@ -158,6 +160,7 @@ module.exports = function(app) {
         })
         .catch(function(error) {
           res.jason({ error: error });
+          window.location.href = "/";
         });
     }
   );
@@ -175,6 +178,7 @@ module.exports = function(app) {
         })
         .catch(function(error) {
           res.jason({ error: error });
+          window.location.href = "/";
         });
     }
   );
@@ -188,6 +192,7 @@ module.exports = function(app) {
       })
       .catch(function(error) {
         res.jason({ error: error });
+        window.location.href = "/";
       });
   });
 
@@ -199,6 +204,7 @@ module.exports = function(app) {
       })
       .catch(function(error) {
         res.jason({ error: error });
+        window.location.href = "/";
       });
   });
 
@@ -211,6 +217,7 @@ module.exports = function(app) {
       })
       .catch(function(error) {
         res.jason({ error: error });
+        window.location.href = "/";
       });
   });
 
@@ -225,6 +232,7 @@ module.exports = function(app) {
       })
       .catch(function(error) {
         res.jason({ error: error });
+        window.location.href = "/";
       });
   });
 
@@ -240,6 +248,7 @@ module.exports = function(app) {
       })
       .catch(function(err) {
         res.json(err);
+        window.location.href = "/";
       });
   });
 
@@ -251,6 +260,7 @@ module.exports = function(app) {
       })
       .catch(function(err) {
         res.json(err);
+        window.location.href = "/";
       });
   });
 
@@ -262,6 +272,7 @@ module.exports = function(app) {
       })
       .catch(function(err) {
         res.json(err);
+        window.location.href = "/";
       });
   });
 
@@ -291,6 +302,7 @@ module.exports = function(app) {
         })
         .catch(function(err) {
           res.json(err);
+          window.location.href = "/";
         });
     }
   );
@@ -307,6 +319,7 @@ module.exports = function(app) {
       })
       .catch(function(err) {
         res.json(err);
+        window.location.href = "/";
       });
   });
 
@@ -319,6 +332,7 @@ module.exports = function(app) {
       })
       .catch(function(err) {
         res.json(err);
+        window.location.href = "/";
       });
   });
 
@@ -368,6 +382,7 @@ module.exports = function(app) {
       })
       .catch(function(err) {
         res.json(err);
+        window.location.href = "/";
       });
   });
 
@@ -383,6 +398,7 @@ module.exports = function(app) {
       })
       .catch(function(err) {
         res.json(err);
+        window.location.href = "/";
       });
   });
 
