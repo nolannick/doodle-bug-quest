@@ -8,7 +8,7 @@ module.exports = (req, res, next) => {
     console.log(req.userData);
   } catch (error) {
     return res.status(401).json({
-      message: ' Check Auth failed'
+      message: 'Check Auth failed'
     });
   }
   
