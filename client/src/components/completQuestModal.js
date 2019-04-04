@@ -66,7 +66,8 @@ class CompleteQuestModal extends React.Component {
           <ModalFooter>
             <Popup trigger={<Button
               color="info"
-              size="sm"
+              size="lg"
+              block
               onClick={this.toggle}
               onClickCapture={this.props.completeQuest}
             >
