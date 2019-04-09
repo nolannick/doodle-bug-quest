@@ -21,7 +21,7 @@ class Reward extends React.Component {
         this.setState({ [name]: value });
         if (this.state.title && this.state.description && this.state.rewardvalue) {
             this.setState({disabled: false})
-        } else {this.setState({disabled: true})}
+        } else {this.setState({disabled: true})} 
     }
 
     getRewards = acctId => {
