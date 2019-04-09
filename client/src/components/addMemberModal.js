@@ -43,7 +43,7 @@ class AddMemberModal extends React.Component {
             </Form>
           </ModalBody>
           <ModalFooter>
-            <Button color="info" size='sm' onClick={this.toggle} onClickCapture={this.props.addFamilyMembers}>Create</Button>{' '}
+            <Button color="info" size='sm' disabled={!this.props.memberName} onClick={this.toggle} onClickCapture={this.props.addFamilyMembers}>Create</Button>{' '}
             <Button color="secondary" size='sm' onClick={this.toggle}>Cancel</Button>
           </ModalFooter>
         </Modal>
