@@ -11,13 +11,17 @@ class Reward extends React.Component {
         title: '',
         description: '',
         rewardvalue: '',
-        rewards: []
+        rewards: [],
+        disabled: true
     }
 
     handleChange = e => {
         e.preventDefault();
         const { name, value } = e.target;
         this.setState({ [name]: value });
+        if (this.state.title && this.state.description && this.state.rewardvalue) {
+            this.setState({disabled: false})
+        } else {this.setState({disabled: true})} 
     }
 
     getRewards = acctId => {

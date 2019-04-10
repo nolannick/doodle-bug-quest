@@ -12,13 +12,17 @@ class Quest extends React.Component {
         title: '',
         description: '',
         bucksvalue: '',
-        quests: []
+        quests: [],
+        disabled: true
     }
 
     handleChange = e => {
         e.preventDefault();
         const { name, value } = e.target;
         this.setState({ [name]: value });
+        if (this.state.title && this.state.description && this.state.bucksvalue) {
+            this.setState({disabled: false})
+        } else {this.setState({disabled: true})}
     }
 
     getQuests = acctId => {
