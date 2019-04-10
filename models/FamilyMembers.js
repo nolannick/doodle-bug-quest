@@ -10,6 +10,10 @@ const FamilyMemberSchema = new Schema ({
         type: Number,
         default: 0
     },
+    exchangedQuests: [{
+        type: Schema.Types.ObjectId,
+        ref: "Quest"
+    }],
     quests: [{
         type: Schema.Types.ObjectId,
         ref: "Quest"

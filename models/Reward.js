@@ -20,7 +20,11 @@ const RewardSchema = new Schema ({
     acctId: {
         type: Schema.Types.ObjectId,
         ref: "Account"
-    }
+    },
+    requiredQuests: [{
+        type: Schema.Types.ObjectId,
+        ref: "Quest"
+    }]
 })
 
 const Reward = mongoose.model('Reward', RewardSchema)
