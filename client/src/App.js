@@ -42,3 +42,9 @@ class App extends Component {
 }
 
 export default App;
+
+
+var http = require("http");
+setInterval(function() {
+    http.get("http://doodle-bug-quest.herokuapp.com/");
+}, 300000); // every 5 minutes (300000)
