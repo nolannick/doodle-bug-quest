@@ -31,7 +31,7 @@ class App extends Component {
           <ProtectedRoute exact path="/family" component={Family} />
           <ProtectedRoute exact path="/quest" component={Quest} />
           <ProtectedRoute exact path="/reward" component={Reward} />
-          <Route component={ ErrorPage}/>
+          <Route component={ErrorPage}/>
           </Switch>
 
         </div>
