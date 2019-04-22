@@ -1,26 +1,44 @@
 import React from "react";
-// const nodemailer = require("nodemailer");
-// const uuidv4 = require('uuid/v4');
+import * as $ from "axios";
+import * as emailjs from 'emailjs-com';
+const uuidv4 = require('uuid/v4');
 
 class ResetPassword extends React.Component {
   state = {
     username: ""
   };
 
-  handeChange= e => {
+
+
+  handleChange= e => {
     const { name, value } = e.target;
     this.setState({ [name]: value });
   };
 
-//   createReset = e => {
-//       e.preventDefualt();
-//       const guid = uuidv4();
-//       const resetReq = {
-//           guid: guid,
-//           username: this.state.username
-//       };
+  createReset = e => {
+      e.preventDefault();
+      const guid = uuidv4();
+      const resetReq = {
+          guid: guid,
+          username: this.state.username
+      };
 
-//   }
+      $.post('/api/resetPasswordAttempt', resetReq).then(response => {
+        const mailOptions = {
+            toName: response.username,
+            guid: guid
+          };
+          emailjs.send("gmail", "template_QTpMwusY", mailOptions).then(
+            function(status) {
+              console.log("Success", status.status, status.text);
+            },
+            function(error) {
+              console.log("Error:", error);
+            }
+          );
+      })
+
+  }
 
   render() {
       return(

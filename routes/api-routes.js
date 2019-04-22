@@ -6,7 +6,7 @@ const checkAuth = require("../checkAuth");
 const FamilyMember = require("../models/FamilyMembers");
 const Quest = require("../models/Quest");
 const Reward = require("../models/Reward");
-const ResetPassword = require("../models/PasswordResetAttempts")
+const ResetPassword = require("../models/PasswordResetAttempts");
 
 //verifies Token
 const verifyToken = function(req, res, next) {
@@ -81,26 +81,44 @@ module.exports = function(app) {
 
   //Route to Create Password Reset Request
 
-  app.post('/api/resetPasswordAttempt', function(req, res) {
+  app.post("/api/resetPasswordAttempt", function(req, res) {
     Account.find({ username: req.body.username }).then(user => {
       if (user[0]) {
-        const newGuid = hash.encrypt(req.body.guid, 'a');
+        const newGuid = hash.encrypt(req.body.guid, "a");
         const resetRequest = {
           username: req.body.username,
-          guid: newGuid,
+          guid: newGuid
         };
         ResetPassword.create(resetRequest)
-        .then(function(newReq) {
-          res.json(newReq);
-        })
-        .catch(function(error) {
-          res.json({ error: error });
-        });
+          .then(function(newReq) {
+            res.json(newReq);
+          })
+          .catch(function(error) {
+            res.json({ error: error });
+          });
       } else {
         res.json({ error: "User does not exist" });
-      };
+      }
+    });
   });
-});
+
+  //Route to reset password
+
+  app.post('/api/passwordreset/:guid', function (req, res) {
+    const newGuid = hash.encrypt(req.params.guid, "a")
+    ResetPassword.findOne({guid: newGuid}, {}, {sort: { 'created_at' : -1 } }).then(record => {
+      if (record) {
+        const salt = hash.generateSalt();
+        const newPassword = hash.encrypt(req.body.password, salt);
+        Account.findOneAndUpdate({username: record.username}, { $set: {password: newPassword, salt: salt}})
+        .then(complete => {
+          res.json('success, yay');
+        }) 
+      } else {
+        res.json('Invalid attempt');
+      }
+    });
+  });
 
   //-------------Data Retrieval Routes.  -------------------
   //route to retrieve a profile by userId. THIS IS AN EXAMPLE OF HOW WE SHOULD QUERY WTH TOKEN.
@@ -116,12 +134,11 @@ module.exports = function(app) {
       });
   });
 
-  app.get('/api/users', function(req, res) {
-    Account.find()
-      .then(function(users) {
-        res.json(users);
-      })
-  })
+  app.get("/api/users", function(req, res) {
+    Account.find().then(function(users) {
+      res.json(users);
+    });
+  });
 
   //==================================================
   //================  GET Routes  ====================
@@ -402,21 +419,14 @@ module.exports = function(app) {
   //=================  Alexa Routes  ===================
   //==================================================
 
-  app.get(
-    "/api/familyMembers",
-    function(req, res) {
-      FamilyMember.findById('5c9e336172fadb002a09bb15')
-        .populate("acctId")
-        .then(function(member) {
-          res.json(member);
-        })
-        .catch(function(error) {
-          res.jason({ error: error });
-        });
-    }
-  );
-
+  app.get("/api/familyMembers", function(req, res) {
+    FamilyMember.findById("5c9e336172fadb002a09bb15")
+      .populate("acctId")
+      .then(function(member) {
+        res.json(member);
+      })
+      .catch(function(error) {
+        res.jason({ error: error });
+      });
+  });
 };
-
-
-
