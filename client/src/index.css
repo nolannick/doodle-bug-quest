@@ -226,7 +226,7 @@ nav > :nth-child(n):hover {
   /*  media queries  */
 @media screen and (max-width: 375px) {
   .Bug {
-    width: 300px;
+    /* width: 300px; */
     margin: 35px 10px 0px 10px;
     font-family: "5yearsoldfont"
   }
