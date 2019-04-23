@@ -7,7 +7,8 @@ import Family from './components/family';
 import Quest from './components/quest';
 import Reward from './components/reward';
 import ErrorPage from './components/errorPage';
-import ProtectedRoute from './components/ProtectedRoute'
+import ProtectedRoute from './components/ProtectedRoute';
+import NewPassword from './components/newPassword'
 
 class App extends Component {
 //   onScroll () { // attempt to add avtice shadow onScroll// //(too much jQuery)//
@@ -28,6 +29,7 @@ class App extends Component {
           <Header />
           <Switch>
           <Route exact path="/" component={Login} />
+          <Route path="/newpassword/" component={NewPassword} />          
           <ProtectedRoute exact path="/family" component={Family} />
           <ProtectedRoute exact path="/quest" component={Quest} />
           <ProtectedRoute exact path="/reward" component={Reward} />
