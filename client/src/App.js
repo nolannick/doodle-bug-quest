@@ -29,7 +29,7 @@ class App extends Component {
           <Header />
           <Switch>
           <Route exact path="/" component={Login} />
-          <Route path="/newpassword/" component={NewPassword} />          
+          <Route exact path="/newpassword" component={NewPassword} />          
           <ProtectedRoute exact path="/family" component={Family} />
           <ProtectedRoute exact path="/quest" component={Quest} />
           <ProtectedRoute exact path="/reward" component={Reward} />

@@ -36,7 +36,7 @@ a {
 .Bugs{
     background-repeat: no-repeat;
     background-size: 50% auto;
-    height: 98.4vh; /* don't change */
+    /* height: 98.4vh; don't change */
     background-Position: 'center';
     border-left: 20%;
 }
@@ -261,7 +261,7 @@ nav > :nth-child(n):hover {
 }
 
 /* DOODLE BUG */
-#doodle{
+#oodle{
   position: fixed;
   bottom: 0;
   /* display: none */
@@ -298,12 +298,12 @@ nav > :nth-child(n):hover {
   }
 }
 
-#mainR {
+#mai {
   width:200px;
   height:200px;
   animation: wave 4s cubic-bezier(.49,.05,.32,1.04) infinite alternate
 }
-#bug {
+#bu {
   width:200px;
   height:200px;
   stroke: #ff00ff;
