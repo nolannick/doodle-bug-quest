@@ -76,7 +76,6 @@ class Login extends React.Component {
   register = e => {
     e.preventDefault();
     this.setState({alert: ""});
-    debugger;
     const isValid = this.validateRegistration();
     if (isValid) {
       const newUser = {

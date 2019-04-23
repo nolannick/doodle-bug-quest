@@ -22,13 +22,14 @@ class ResetPassword extends React.Component {
           guid: guid,
           username: this.state.username
       };
-
+      console.log('input:', resetReq.username)
       $.post('/api/resetPasswordAttempt', resetReq).then(response => {
+          console.log(response);
         const mailOptions = {
-            toName: response.username,
+            toName: response.data.username,
             guid: guid
           };
-          emailjs.send("gmail", "template_QTpMwusY", mailOptions).then(
+          emailjs.send("gmail", "template_QTpMwusY", mailOptions, 'user_PvABvsjAlINaXR5B8G5A4').then(
             function(status) {
               console.log("Success", status.status, status.text);
             },
