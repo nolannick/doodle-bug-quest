@@ -1,9 +1,9 @@
 import React from 'react';
-import { Link } from "react-router-dom";
 import { Container } from 'reactstrap';
 import RewardModal from './rewardModal';
 import RewardsView from './rewardsView';
 import {secure} from '../utility/util';
+import Nav from './navigation';
 
 class Reward extends React.Component {
     state = {
@@ -58,11 +58,7 @@ class Reward extends React.Component {
     render() {
         return (
             <Container className="Bug">
-                <nav>
-                    <Link to={'/family'} >Family Members</Link>
-                    <Link to={'/quest'} >Quests</Link>
-                    <Link to={'/reward'} >Rewards</Link>
-                </nav>
+                <Nav />
                 <RewardModal buttonLabel='Create Rewards'
                      handleChange={this.handleChange}
                      addRewards={this.addRewards}

@@ -315,7 +315,7 @@ module.exports = function(app) {
         })
         .catch(function(err) {
           res.json(err);
-          window.location.href = "/";
+          // window.location.href = "/";
         });
     }
   );

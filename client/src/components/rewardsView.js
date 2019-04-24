@@ -4,17 +4,12 @@ import React from 'react';
 import RewardClaimPage from './rewardsClaimPage';
 
 const QuestView = props => (
-    <div className="container">
+    <div className="container rowView">
         {props.rewards ? (
             <div>
                 {props.rewards.map(reward => (
                     <div key={reward._id}>
-                        {/* <Route
-                            path='/reward/claim/{reward._id}'
-                            render={(props) => <RewardClaimPage {...props} isAuthed={true} />}
-                        />
-                        <Link to={'reward/claim/{reqard._id'}>{reward.title}{' '}{reward.description}{' '}{reward.price}</Link> */}
-                        <RewardClaimPage 
+                        <RewardClaimPage
                             rewardKey={reward._id}
                             title={reward.title}
                             description={reward.description}

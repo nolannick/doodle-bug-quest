@@ -1,9 +1,9 @@
 import React from 'react';
 import { Container } from 'reactstrap';
-import { Link } from "react-router-dom";
 import AddQuestModal from './addQuestModal';
 import QuestView from './questView';
 import {secure} from '../utility/util';
+import Nav from './navigation';
 
 
 class Quest extends React.Component {
@@ -57,11 +57,7 @@ class Quest extends React.Component {
     render() {
         return (
             <Container className="Bug">
-                <nav>
-                    <Link to={'/family'} >Family Members</Link>
-                    <Link to={'/quest'} >Quests</Link>
-                    <Link to={'/reward'} >Rewards</Link>
-                </nav>
+                <Nav />
                 <AddQuestModal buttonLabel='Create Quests'
                     handleChange={this.handleChange}
                     addQuests={this.addQuests}
