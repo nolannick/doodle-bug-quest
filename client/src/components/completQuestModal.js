@@ -9,8 +9,6 @@ import {
   FormGroup,
   Input
 } from "reactstrap";
-import Popup from 'reactjs-popup';
-import RandomGif from './gifDisplay'
 
 class CompleteQuestModal extends React.Component {
   constructor(props) {
@@ -25,6 +23,7 @@ class CompleteQuestModal extends React.Component {
     this.setState(prevState => ({
       modal: !prevState.modal
     }));
+
   }
 
   render() {
@@ -53,7 +52,7 @@ class CompleteQuestModal extends React.Component {
                   name="memberId"
                   onChange={this.props.onChange}
                 >
-                  <option>Select super agent...</option>
+                  <option>Select Doodle Bugger...</option>
                   {this.props.members.map(x => (
                     <option key={x._id} value={x._id}>
                       {x.name}
@@ -64,17 +63,13 @@ class CompleteQuestModal extends React.Component {
             </Form>
           </ModalBody>
           <ModalFooter>
-            <Popup trigger={<Button
+            <Button
               color="info"
               size="lg"
-              block
-              onClick={this.toggle}
-              onClickCapture={this.props.completeQuest}
-            >
+              block 
+              onClickCapture={this.props.completeQuest}>
               Complete!
-            </Button>}>
-              <RandomGif />
-            </Popup>
+              </Button>
             {" "}
             <Button color="secondary" size="sm" onClick={this.toggle}>
               Cancel

@@ -40,7 +40,8 @@ class QuestDetails extends React.Component {
         secure.put('/api/familyMembers/familyMember/' + this.state.memberId, newQuest)
         .then( (res) => {
             console.log(res);
-            setTimeout(function() {window.location.href = "/family";}, 5000);
+            window.location.href = "/rewardGif";
+            // setTimeout(function() {window.location.href = "/family";}, 5000);
            
         });
     }
@@ -67,7 +68,7 @@ class QuestDetails extends React.Component {
                         <button onClick={this.onRemoveClick}>Remove</button>
                     </div>
                 </Popup>
-                <p>{this.props.description}</p>
+                <p className="descriptionText">{this.props.description}</p>
                 <p className="floatR"> Quest bucks:{' '}<Badge color="info" size='lg'>{this.props.questbucks}</Badge></p>
             </div>
         )

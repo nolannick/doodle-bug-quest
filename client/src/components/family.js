@@ -1,9 +1,9 @@
 import React from 'react';
 import { Container } from 'reactstrap';
-import { Link } from "react-router-dom";
 import FamilyView from './familyView';
 import AddMemberModal from './addMemberModal';
 import {secure} from '../utility/util';
+import Nav from './navigation';
 
 class Family extends React.Component {
 
@@ -53,11 +53,7 @@ class Family extends React.Component {
     render() {
         return (
             <Container className="Bug">
-                <nav>
-                    <Link to={'/family'} >Family Members</Link>
-                    <Link to={'/quest'} >Quests</Link>
-                    <Link to={'/reward'} >Rewards</Link>
-                </nav>
+                <Nav />
                 <AddMemberModal buttonLabel='Add Members'
                     handleChange={this.handleChange}
                     memberName={this.state.memberName}

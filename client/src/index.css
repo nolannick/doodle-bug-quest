@@ -10,6 +10,7 @@
 body {
     background: linear-gradient(transparent, #60CFF6, #3AC655 );
     margin-bottom: 0px;
+    min-height: 100%;
     font-family: "5yearsoldfont" !important;
     overflow: hidden;
     border: 5px solid black ;
@@ -21,13 +22,6 @@ body {
         round;  
 }
 
-.Bug {
-  position: absolute;
-  top: 12.5vh; /* don't change */
-  right: 0.5%;
-  padding-left: 8%;
-  padding-right: 8%;
-}
 
 a {
   color:  #FD0A0F !important
@@ -36,7 +30,7 @@ a {
 .Bugs{
     background-repeat: no-repeat;
     background-size: 50% auto;
-    /* height: 98.4vh; don't change */
+    /* height: 98.4vh; */
     background-Position: 'center';
     border-left: 20%;
 }
@@ -154,9 +148,9 @@ nav > :nth-child(n):hover {
 
 .Bug > .container {
   /* max-height: 30.55rem; */
-  max-height: 73vh;
+  /* max-height: 73vh; */
   overflow: auto;
-  padding-left: 6px
+  /* padding-left: 6px */
 }
 
 .Bug > .container > div > div:nth-child(3n+1) {
@@ -165,7 +159,7 @@ nav > :nth-child(n):hover {
     url("./assests/thincrayonlineorange.svg")  /* source */
     45 /                    /* slice */
     20px /    /* width */
-    0px 0px 0px 8px       /* outset */
+    0px 0px 0px 0px       /* outset */
     round
 }
 
@@ -175,7 +169,7 @@ nav > :nth-child(n):hover {
     url("./assests/thincrayonlinegreen.svg")  /* source */
     45 /                    /* slice */
     20px /    /* width */
-    0px 0px 0px 8px       /* outset */
+    0px 0px 0px 0px       /* outset */
     round
 }
 
@@ -185,7 +179,7 @@ nav > :nth-child(n):hover {
     url("./assests/thincrayonlinered.svg")  /* source */
     45 /                    /* slice */
     20px /    /* width */
-    0px 0px 0px 8px       /* outset */
+    0px 0px 0px 0px       /* outset */
     round
 }
 
@@ -199,7 +193,7 @@ nav > :nth-child(n):hover {
     url("./assests/thincrayonlinegrass.svg")  /* source */
     45 /                    /* slice */
     20px /    /* width */
-    0px 0px 0px 8px       /* outset */
+    0px 0px 0px 0px       /* outset */
     round
 }
 .Bug > .container > div:nth-child(3n+2) {
@@ -208,7 +202,7 @@ nav > :nth-child(n):hover {
     url("./assests/thincrayonlineblu.svg")  /* source */
     45 /                    /* slice */
     20px  /    /* width */
-    0px 0px 0px 8px       /* outset */
+    0px 0px 0px 0px       /* outset */
     round
 }
 .Bug > .container > div:nth-child(3n+3) {
@@ -217,7 +211,7 @@ nav > :nth-child(n):hover {
     url("./assests/thincrayonlinered.svg")  /* source */
     45 /                    /* slice */
     20px  /    /* width */
-    0px 0px 0px 8px       /* outset */
+    0px 0px 0px 0px       /* outset */
     round
 }
 .modal-content {
@@ -256,6 +250,7 @@ nav > :nth-child(n):hover {
   display: block;
 
 }
+
 .center{
   text-align: center;
 }

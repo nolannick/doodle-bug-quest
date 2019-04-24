@@ -8,20 +8,11 @@ import Quest from './components/quest';
 import Reward from './components/reward';
 import ErrorPage from './components/errorPage';
 import ProtectedRoute from './components/ProtectedRoute';
-import NewPassword from './components/newPassword'
+import NewPassword from './components/newPassword';
+import randomGif from './components/gifDisplay';
 
 class App extends Component {
-//   onScroll () { // attempt to add avtice shadow onScroll// //(too much jQuery)//
-// window.scroll(function(){
-//   let scroll = window.scrollTop()
-//   const contain = document.getElementsByClassName("container")
-//   if (scroll > 0) {
-//     contain.addClass("active")
-//   } else {
-//     contain.removerClass('active')
-//   }
-// })
-// }
+
   render() {
     return (
       <BrowserRouter>
@@ -33,6 +24,7 @@ class App extends Component {
           <ProtectedRoute exact path="/family" component={Family} />
           <ProtectedRoute exact path="/quest" component={Quest} />
           <ProtectedRoute exact path="/reward" component={Reward} />
+          <ProtectedRoute exact path="/rewardGif" component={randomGif} />
           <Route component={ErrorPage}/>
           </Switch>
 

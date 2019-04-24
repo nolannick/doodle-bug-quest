@@ -35,3 +35,33 @@
  .floatR {
     text-align: right
  }
+
+ .gifDone {
+     width: 80%;
+ }
+
+.gifWrapper {
+    text-align: center;
+}
+
+.container {
+    width: 100%;
+    padding-right: 0px;
+    padding-left: 0px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.Bug {
+    padding-left: 4%;
+    padding-right: 4%;
+  }
+
+.descriptionText {
+    padding-left: 12px;
+    padding-right: 12px;
+}
+
+.rowView {
+    padding-bottom: 20px;
+}
