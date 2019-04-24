@@ -16,7 +16,13 @@ const alertText = type => {
       text = "Email or Password is incorrect. Please try again.";
       break;
     case "Missing Info":
-      text = "Please fill in all information to Register";
+      text = "All fields are required";
+      break;
+    case "Email Sent":
+      text = "A Reset Password link has been sent to your email";
+      break;
+      case "Password Reset":
+      text = `Your Password has successfully been reset.`;
       break;
     default:
       text = "";

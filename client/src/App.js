@@ -9,6 +9,7 @@ import Reward from './components/reward';
 import ErrorPage from './components/errorPage';
 import ProtectedRoute from './components/ProtectedRoute';
 import NewPassword from './components/newPassword';
+import ResetPassword from './components/resetPassword'
 import randomGif from './components/gifDisplay';
 
 class App extends Component {
@@ -20,7 +21,8 @@ class App extends Component {
           <Header />
           <Switch>
           <Route exact path="/" component={Login} />
-          <Route exact path="/newpassword" component={NewPassword} />          
+          <Route exact path='/resetpassword' component={ResetPassword} />
+          <Route path="/newpassword/" component={NewPassword} />          
           <ProtectedRoute exact path="/family" component={Family} />
           <ProtectedRoute exact path="/quest" component={Quest} />
           <ProtectedRoute exact path="/reward" component={Reward} />

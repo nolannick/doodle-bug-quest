@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 const LoginForm = (props) => (
     <form className="loginForm">
@@ -15,7 +16,7 @@ const LoginForm = (props) => (
         <div className="flexCenter">
         <button className="loginButton" type="submit" onClick={props.login}>Login</button>
         </div><div className="flexCenter">
-        <p>Not yet Registered? Click <a href="/#" onClick={props.toggleLogin}>here</a> to register instead.</p>
+        <p><a href="/#" onClick={props.toggleLogin}>Register</a> || <Link to="/resetpassword">Forgot Password</Link></p>
         </div>
     </form>
 )
