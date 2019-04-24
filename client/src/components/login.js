@@ -3,7 +3,6 @@ import LoginForm from "./loginForm";
 import RegistrationForm from "./registrationForm";
 import * as $ from "axios";
 import Alert from './alert';
-import ResetPassword from './resetPassword'
 
 class Login extends React.Component {
   state = {
@@ -122,7 +121,6 @@ class Login extends React.Component {
             login={this.loginClick}
             toggleLogin={this.toggleLogin}
           />
-          <ResetPassword />
           </div>
         )}
       </div>
