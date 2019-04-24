@@ -36,7 +36,7 @@ class CompleteQuestModal extends React.Component {
                         <Form>
                             <FormGroup>
                                 <Input type="select" name="memberId" onChange={this.props.onChange}>
-                                    <option>Select super agent...</option>
+                                    <option>Select Doodle Bugger...</option>
                                     {this.props.members.map(x => (
                                         <option key={x._id} value={x._id}>{x.name}</option>
                                     ))}

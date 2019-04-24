@@ -1,6 +1,7 @@
 import React from 'react';
 import * as $ from "axios";
 import { Link } from 'react-router-dom';
+import Nav from './navigation';
 
 
 class RandomGif extends React.Component {
@@ -19,24 +20,14 @@ class RandomGif extends React.Component {
     };
 
     render() {
-        const divStyle = {
-            width: '100%',
-            height: '0',
-            paddingBottom: '100%',
-            float: 'left',
-            position: 'relative'
-        }
-        const iFrameStyle = {
-            width: '100%',
-            position: 'absolute'
-        }
         return (
-            <div>
-                <h2>You did it! Good job Doodle Bugger!</h2>
-            <div style={divStyle}>
-                    <iframe title="success" frameBorder='0' src={this.state.gifUrl} style={iFrameStyle}></iframe>
-                </div>
-                <Link to='/family'>
+            <div className="Bug gifWrapper">
+                <Nav />
+                <h2>You did it! <br />Great job Doodle Bugger!</h2>
+
+                <iframe title="success" frameBorder='0' src={this.state.gifUrl} ></iframe>
+
+                <Link to='/family' className="gifDoneLink">
                     <button className="gifDone btn btn-success">Back to Family</button>
                 </Link>
             </div>
