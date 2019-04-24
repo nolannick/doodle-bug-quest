@@ -8,11 +8,12 @@
        url('./assests/5yearsoldfont.ttf#svgFontName') format('svg'); /* Legacy iOS */
 }
 body {
+    min-height: 100vh;
     background: linear-gradient(transparent, #60CFF6, #3AC655 );
     margin-bottom: 0px;
     min-height: 100%;
     font-family: "5yearsoldfont" !important;
-    overflow: hidden;
+    overflow: auto;
     border: 5px solid black ;
     border-image: 
         url("./assests/thincrayonlineblu.svg")  /* source */
