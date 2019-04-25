@@ -35,7 +35,7 @@ class AddMemberModal extends React.Component {
           <ModalBody>
             <Form>
               <FormGroup>
-                <Input type="text" name="memberName" placeholder="Super Agent Name" 
+                <Input type="text" name="memberName" placeholder="Doodle Bugger Name" 
                   value={this.props.memberName}
                   onChange={this.props.handleChange}
                 />
