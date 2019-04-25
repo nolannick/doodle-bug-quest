@@ -81,6 +81,18 @@ h1{
     round; 
   
 }
+
+.logoutButton {
+  background-color: transparent;
+  cursor:pointer;
+  color:darkslategrey;
+  font-size:15px;
+  padding:4px 15px 2px 15px;
+  text-decoration:none;
+  text-shadow:2px 1px 3px #696969;
+  float: right;
+  border: 2px solid transparent;
+}
 .loginForm{
   padding: 10px 10px 0px 10px;
   font-size: 1.5em;
