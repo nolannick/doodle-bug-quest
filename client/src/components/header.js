@@ -1,11 +1,32 @@
 import React from "react";
 import Logout from "./logout";
 
-const Header = props => (
-  <div className="Bugs">
-    <Logout />
-    <h1>Doodle Bug Quest</h1>
-  </div>
-);
+class Header extends React.Component {
+  state = {
+    isLoggedIn: false
+  };
+
+  componentDidMount() {
+    if (localStorage.getItem("token")) {
+      this.setState({
+        isLoggedIn: true
+      });
+    }
+  }
+
+  render() {
+    return (
+        this.state.isLoggedIn ? (
+            <header className="Bugs">
+            <h1 className="header">Doodle Bug Quest</h1> <Logout />
+          </header>
+        ) : (
+            <header className="Bugs">
+            <h1 className="header">Doodle Bug Quest</h1>
+          </header>
+        )
+    );
+  }
+}
 
 export default Header;
