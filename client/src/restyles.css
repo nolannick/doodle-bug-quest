@@ -69,14 +69,8 @@
 .footer {
     display: inline-block;
     text-align: center;
-    position: fixed;
-    bottom: 0px;
+    position: relative;
     margin-top: 30px;
     bottom: 10px;
     width: 100%;
-}
-
-.flexCenter > p {
-    margin-top: 20px;
-    font-size: .9em;
 }
