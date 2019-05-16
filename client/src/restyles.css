@@ -69,7 +69,8 @@
 .footer {
     display: inline-block;
     text-align: center;
-    position: relative;
+    position: fixed;
+    bottom: 0px;
     margin-top: 30px;
     bottom: 10px;
     width: 100%;
