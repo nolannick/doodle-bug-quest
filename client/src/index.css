@@ -260,7 +260,7 @@ nav > :nth-child(n):hover {
 }
 
 #errorImage{
-  width: 50vw;
+  width: 25vw;
   margin-left: auto;
   margin-right: auto;
   display: block;
@@ -320,4 +320,3 @@ nav > :nth-child(n):hover {
   stroke: #ff00ff;
   animation: wiggle 6s ease infinite alternate
 }
-

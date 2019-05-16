@@ -5,8 +5,21 @@ import Logout from "../logout";
 
 class FooterComponent extends Component {
 
+  state = {
+    isLoggedIn: false
+  };
+
+  componentDidMount() {
+    if (localStorage.getItem("token")) {
+      this.setState({
+        isLoggedIn: true
+      });
+    }
+  }
+
   render() {
     return (
+      this.state.isLoggedIn ? (
       <div className="footer">
         <Logout />
         <br/>
@@ -14,6 +27,13 @@ class FooterComponent extends Component {
           Copyright &#169;2019 Doodle Bug Quest
         </div>
       </div>
+    ):(
+      <div className="footer">
+        <div className="copyright">
+          Copyright &#169;2019 Doodle Bug Quest
+        </div>
+      </div>
+    )
     );
   }
 }

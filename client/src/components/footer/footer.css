@@ -3,6 +3,8 @@
   padding-top: 40px;
   padding-bottom: 40px;
   color: white;
+  position: fixed;
+  bottom: 0px;
 }
 
 .link-list {
