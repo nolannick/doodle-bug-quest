@@ -36,8 +36,7 @@ a {
 }
 
 h1{
-  padding-top: 15px;
-  padding-bottom: 50px;
+  padding-top: 20px;
   text-align: center;
   color: darkslategrey;  
 }
@@ -95,7 +94,6 @@ transform: translateX(-50%);
   padding:4px 15px 2px 15px;
   text-decoration:none;
   text-shadow:2px 1px 3px #696969;
-  float: right;
   border: 2px solid transparent;
 }
 .loginForm{
@@ -239,7 +237,7 @@ nav > :nth-child(n):hover {
 @media screen and (max-width: 375px) {
   .Bug {
     /* width: 300px; */
-    margin: 35px 10px 0px 10px;
+    margin: 20px 10px 0px 10px;
     font-family: "5yearsoldfont"
   }
   

@@ -65,3 +65,12 @@
 .rowView {
     padding-bottom: 20px;
 }
+
+.footer {
+    display: inline-block;
+    text-align: center;
+    position: relative;
+    margin-top: 30px;
+    bottom: 10px;
+    width: 100%;
+}
