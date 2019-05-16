@@ -4,6 +4,7 @@ import React from 'react';
 import RewardClaimPage from './rewardsClaimPage';
 
 const QuestView = props => (
+    
     <div className="container rowView">
         {props.rewards ? (
             <div>
@@ -22,7 +23,9 @@ const QuestView = props => (
         ) : (
                 <div></div>
             )}
+    
     </div>
+    
 );
 
 export default QuestView;

@@ -2,7 +2,7 @@ import React from 'react';
 import { Container } from 'reactstrap';
 import FamilyView from './familyView';
 import AddMemberModal from './addMemberModal';
-import {secure} from '../utility/util';
+import { secure } from '../utility/util';
 import Nav from './navigation';
 
 class Family extends React.Component {
@@ -21,7 +21,7 @@ class Family extends React.Component {
     }
 
     getFamilyMembers = (acctId) => {
-        secure.get('/api/familyMembers/' + acctId )
+        secure.get('/api/familyMembers/' + acctId)
             .then((res) => {
                 // console.log(res);
                 this.setState({ members: res.data });
@@ -31,7 +31,7 @@ class Family extends React.Component {
     componentDidMount() {
         this.getFamilyMembers(this.state.acctId);
     }
- 
+
     addFamilyMembers = e => {
         e.preventDefault();
         const acctId = this.state.acctId;
@@ -46,7 +46,7 @@ class Family extends React.Component {
             .then((res) => {
                 // console.log(res);
                 this.getFamilyMembers(acctId);
-                this.setState({ memberName: ''});
+                this.setState({ memberName: '' });
             });
     }
 
@@ -63,6 +63,7 @@ class Family extends React.Component {
                     familyname={this.state.familyname}
                     members={this.state.members}
                 />
+
             </Container>
         )
     }

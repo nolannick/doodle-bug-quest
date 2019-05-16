@@ -1,5 +1,4 @@
 import React from "react";
-import Logout from "./logout";
 
 class Header extends React.Component {
   state = {
@@ -18,7 +17,7 @@ class Header extends React.Component {
     return (
         this.state.isLoggedIn ? (
             <header className="Bugs">
-            <h1 className="header">Doodle Bug Quest</h1> <Logout />
+            <h1 className="header">Doodle Bug Quest</h1>
           </header>
         ) : (
             <header className="Bugs">

@@ -20,7 +20,9 @@ const QuestView = props => (
         ) : (
                 <div></div>
             )}
+    
     </div>
+
 );
 
 export default QuestView;

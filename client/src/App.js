@@ -11,13 +11,14 @@ import ProtectedRoute from './components/ProtectedRoute';
 import NewPassword from './components/newPassword';
 import ResetPassword from './components/resetPassword'
 import randomGif from './components/gifDisplay';
+import FooterComponent from './components/footer/footer'
 
 class App extends Component {
 
   render() {
     return (
       <BrowserRouter>
-        <div >
+        <div className="mainContainer">
           <Header />
           <Switch>
           <Route exact path="/" component={Login} />
@@ -29,7 +30,8 @@ class App extends Component {
           <ProtectedRoute exact path="/rewardGif" component={randomGif} />
           <Route component={ErrorPage}/>
           </Switch>
-
+          <FooterComponent/>
+          
         </div>
       </BrowserRouter>
 
