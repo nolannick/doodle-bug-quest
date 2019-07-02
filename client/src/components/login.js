@@ -51,6 +51,12 @@ class Login extends React.Component {
     sessionStorage.clear();
   };
 
+  componentDidMount() {
+    if (!this.state.loggedIn) {
+      localStorage.clear();
+    };
+  }
+
   login = User => {
     localStorage.clear();
     $.post("/api/users/session", User).then(response => {

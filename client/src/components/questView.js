@@ -6,7 +6,7 @@ const QuestView = props => (
         {props.quests ? (
             <div>
                 {props.quests.map(quest => (
-                    <div key={quest._id}>
+                    <div className="famRow" key={quest._id}>
                         <QuestDetails 
                             questKey={quest._id}
                             title={quest.title}

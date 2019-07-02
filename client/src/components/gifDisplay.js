@@ -1,7 +1,6 @@
 import React from 'react';
 import * as $ from "axios";
 import { Link } from 'react-router-dom';
-import Nav from './navigation';
 
 
 class RandomGif extends React.Component {
@@ -22,7 +21,6 @@ class RandomGif extends React.Component {
     render() {
         return (
             <div className="Bug gifWrapper">
-                <Nav />
                 <h2>You did it! <br />Great job Doodle Bugger!</h2>
 
                 <iframe title="success" frameBorder='0' src={this.state.gifUrl} ></iframe>

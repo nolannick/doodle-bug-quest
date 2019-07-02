@@ -1,4 +1,5 @@
 import React from "react";
+import Nav from "./navigation";
 
 class Header extends React.Component {
   state = {
@@ -18,6 +19,8 @@ class Header extends React.Component {
         this.state.isLoggedIn ? (
             <header className="Bugs">
             <h1 className="header">Doodle Bug Quest</h1>
+            <br/>
+            <Nav/>
           </header>
         ) : (
             <header className="Bugs">

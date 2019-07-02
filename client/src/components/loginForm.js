@@ -5,11 +5,13 @@ const LoginForm = (props) => (
     <form className="loginForm">
         <div className="form-group">
             <div className="form-input">
-                <label className="inputLabel">Username: </label>
+                <label className="inputLabel">Username:</label>
                 <input className="inputField" name="username" placeholder="Enter username" onChange={props.changeHandler}></input>
             </div>
+            <br/>
+            <br/>
             <div className="form-input">
-                <label className="inputLabel">Password: </label>
+                <label className="inputLabel">Password:</label>
                 <input className="inputField" name="password" type="password" placeholder="Enter Password" onChange={props.changeHandler}></input>
             </div>
         </div>
