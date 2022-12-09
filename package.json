@@ -24,7 +24,7 @@
         "crypto-random-string": "^1.0.0",
         "dotenv": "^7.0.0",
         "emailjs-com": "^2.3.2",
-        "express": "^4.16.4",
+        "express": "^4.17.3",
         "if-env": "^1.0.4",
         "jsonwebtoken": "^8.5.0",
         "mongoose": "^5.4.16",
